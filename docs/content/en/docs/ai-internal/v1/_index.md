@@ -25,7 +25,7 @@ Designed for building beautiful websites for documentation, blogs, and websites,
 
 {{< callout emoji="❓" >}}
   PROJECT_NAME is still in active development.
-  Have a question or feedback? Feel free to [open an issue](https://github.com/imfing/hextra/issues)!
+  Have a question or feedback? Feel free to [open an issue](https://github.com/your-username/your-project/issues)!
 {{< /callout >}}
 
 ## Next

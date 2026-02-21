@@ -6,16 +6,16 @@ sidebar:
 next: /guide/deploy-site
 ---
 
-这些短代码的主要用途是在布局`hextra-home`内。
+这些短代码的主要用途是在布局`theme-home`内。
 
-## `hextra/feature-card`
+## `theme/feature-card`
 
 显示功能卡的短代码。
 
 ### Usage
 
 ```
-{{</* hextra/feature-card title="Title" subtitle="Subtitle" */>}}
+{{</* theme/feature-card title="Title" subtitle="Subtitle" */>}}
 ```
 
 ### Options
@@ -31,18 +31,18 @@ next: /guide/deploy-site
 | `icon`       | 卡片的图标。      |
 | `link`       | 卡片的链接。      |
 
-## `hextra/feature-grid`
+## `theme/feature-grid`
 
 用于显示特征网格的短代码。
 
 ### Usage
 
 ```
-{{</* hextra/feature-grid cols="3" */>}}
-  {{</* hextra/feature-card title="One" */>}}
-  {{</* hextra/feature-card title="Two" */>}}
-  {{</* hextra/feature-card title="Three" */>}}
-{{</* /hextra/feature-grid */>}}
+{{</* theme/feature-grid cols="3" */>}}
+  {{</* theme/feature-card title="One" */>}}
+  {{</* theme/feature-card title="Two" */>}}
+  {{</* theme/feature-card title="Three" */>}}
+{{</* /theme/feature-grid */>}}
 ```
 
 ### Options
@@ -52,18 +52,18 @@ next: /guide/deploy-site
 | `cols`    | 列数。         |
 | `style`   | 网格的样式。      |
 
-## `hextra/hero-badge`
+## `theme/hero-badge`
 
 用于呈现带有链接的徽章的短代码。
 
 ### Usage
 
 ```
-{{</* hextra/hero-badge */>}}
+{{</* theme/hero-badge */>}}
   <div class="hx:w-2 hx:h-2 hx:rounded-full hx:bg-primary-400"></div>
   <span>Free, open source</span>
   {{</* icon name="arrow-circle-right" attributes="height=14" */>}}
-{{</* /hextra/hero-badge */>}}
+{{</* /theme/hero-badge */>}}
 ```
 
 ### Options
@@ -74,14 +74,14 @@ next: /guide/deploy-site
 | `class`   | 徽章的类别。      |
 | `style`   | 徽章的样式。      |
 
-## `hextra/hero-button`
+## `theme/hero-button`
 
 用于呈现带有链接的按钮的短代码。
 
 ### Usage
 
 ```
-{{</* hextra/hero-button text="Get Started" link="/docs" */>}}
+{{</* theme/hero-button text="Get Started" link="/docs" */>}}
 ```
 
 ### Options
@@ -92,16 +92,16 @@ next: /guide/deploy-site
 | `text`    | 按钮的文本。      |
 | `style`   | 按钮的样式。      |
 
-## `hextra/hero-container`
+## `theme/hero-container`
 
 一个简单的英雄容器，左侧有一个图像。
 
 ### Usage
 
 ```
-{{</* hextra/hero-container image="images/logo.svg"  imageTitle="title" */>}}
+{{</* theme/hero-container image="images/logo.svg"  imageTitle="title" */>}}
     Content
-{{</* /hextra/hero-container */>}}
+{{</* /theme/hero-container */>}}
 ```
 
 ### Options
@@ -120,16 +120,16 @@ next: /guide/deploy-site
 | `imageHeight` | 图片的高度（默认值：`350`）。        |
 | `style`       | 容器的样式。                   |
 
-## `hextra/hero-headline`
+## `theme/hero-headline`
 
 显示英雄标题的短代码。
 
 ### Usage
 
 ```
-{{</* hextra/hero-headline */>}}
+{{</* theme/hero-headline */>}}
   Build modern websites&nbsp;<br class="hx:sm:block hx:hidden" />with Markdown and Hugo
-{{</* /hextra/hero-headline */>}}
+{{</* /theme/hero-headline */>}}
 ```
 
 ### Options
@@ -138,14 +138,14 @@ next: /guide/deploy-site
 |-----------|-------------|
 | `style`   | 标题的样式。      |
 
-## `hextra/hero-section`
+## `theme/hero-section`
 
 带有标题和可选样式的简单英雄部分。
 
 ### Usage
 
 ```
-{{</* hextra/hero-section heading="h3" */>}}Title{{</* /hextra/hero-section */>}}>
+{{</* theme/hero-section heading="h3" */>}}Title{{</* /theme/hero-section */>}}>
 ```
 
 ### Options
@@ -156,16 +156,16 @@ next: /guide/deploy-site
 | `style`   | 标题的样式。          |
 | `content` | 标题的内容。          |
 
-## `hextra/hero-subtitle`
+## `theme/hero-subtitle`
 
 显示英雄字幕的短代码。
 
 ### Usage
 
 ```
-{{</* hextra/hero-subtitle */>}}
+{{</* theme/hero-subtitle */>}}
   Fast, batteries-included Hugo theme&nbsp;<br class="hx:sm:block hx:hidden" />for creating beautiful static websites
-{{</* /hextra/hero-subtitle */>}}
+{{</* /theme/hero-subtitle */>}}
 ```
 
 ### Options

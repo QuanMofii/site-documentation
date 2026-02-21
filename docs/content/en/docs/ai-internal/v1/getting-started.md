@@ -10,16 +10,16 @@ prev: /docs
 
 ## Quick Start from Template
 
-{{< icon "github" >}}&nbsp;[imfing/hextra-starter-template](https://github.com/imfing/hextra-starter-template)
+{{< icon "github" >}}&nbsp;`your-username/your-project-starter-template`
 
-You could quickly get started by using the above template repository.
+You could quickly get started by using a starter template repository. Replace `your-username` and `your-project` with your actual GitHub username and project name.
 
 <img src="https://docs.github.com/assets/cb-77734/mw-1440/images/help/repository/use-this-template-button.webp" width="500" alt="GitHub repository page showing the Use this template button">
 
 We have provided a [GitHub Actions workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) which can help automatically build and deploy your site to GitHub Pages, and host it for free.
 For more options, check out [Deploy Site](../guide/deploy-site).
 
-[🌐 Demo ↗](https://imfing.github.io/hextra-starter-template/)
+Demo: `https://your-username.github.io/your-project-starter-template/`
 
 ## Start as New Project
 
@@ -57,7 +57,7 @@ cd my-site
 hugo mod init github.com/username/my-site
 
 # add the theme
-hugo mod get github.com/imfing/hextra
+hugo mod get github.com/your-username/your-project
 ```
 
 Configure `hugo.yaml` to use the theme by adding the following:
@@ -65,7 +65,7 @@ Configure `hugo.yaml` to use the theme by adding the following:
 ```yaml
 module:
   imports:
-    - path: github.com/imfing/hextra
+    - path: github.com/your-username/your-project
 ```
 
 ### Create your first content pages
@@ -96,16 +96,16 @@ To update all Hugo modules in your project to their latest versions, run the fol
 hugo mod get -u
 ```
 
-To update the theme to the [latest released version](https://github.com/imfing/hextra/releases), run the following command:
+To update the theme to the [latest released version](https://github.com/your-username/your-project/releases), run the following command:
 
 ```shell
-hugo mod get -u github.com/imfing/hextra
+hugo mod get -u github.com/your-username/your-project
 ```
 
 If you want to try the most recent changes before the next release, update the module to the development branch directly (⚠️ may contain unstable/breaking changes):
 
 ```shell
-hugo mod get -u github.com/imfing/hextra@main
+hugo mod get -u github.com/your-username/your-project@main
 ```
 
 See [Hugo Modules](https://gohugo.io/hugo-modules/use-modules/#update-all-modules) for more details.
@@ -144,7 +144,7 @@ git init
 Then, add the theme as a Git submodule:
 
 ```shell
-git submodule add https://github.com/imfing/hextra.git themes/hextra
+git submodule add https://github.com/your-username/your-project.git themes/hextra
 ```
 
 Configure `hugo.yaml` to use the theme by adding the following:

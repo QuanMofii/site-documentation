@@ -6,16 +6,16 @@ sidebar:
 next: /guide/deploy-site
 ---
 
-الاستخدام الرئيسي لهذه الرموز المختصرة هو داخل التخطيط `hextra-home`.
+الاستخدام الرئيسي لهذه الرموز المختصرة هو داخل التخطيط `theme-home`.
 
-## `hextra/feature-card`
+## `theme/feature-card`
 
 رمز مختصر لعرض بطاقة مميزة.
 
 ### Usage
 
 ```
-{{</* hextra/feature-card title="Title" subtitle="Subtitle" */>}}
+{{</* theme/feature-card title="Title" subtitle="Subtitle" */>}}
 ```
 
 ### Options
@@ -31,18 +31,18 @@ next: /guide/deploy-site
 | `icon`       | أيقونة البطاقة.         |
 | `link`       | رابط البطاقة.           |
 
-## `hextra/feature-grid`
+## `theme/feature-grid`
 
 رمز مختصر لعرض شبكة الميزات.
 
 ### Usage
 
 ```
-{{</* hextra/feature-grid cols="3" */>}}
-  {{</* hextra/feature-card title="One" */>}}
-  {{</* hextra/feature-card title="Two" */>}}
-  {{</* hextra/feature-card title="Three" */>}}
-{{</* /hextra/feature-grid */>}}
+{{</* theme/feature-grid cols="3" */>}}
+  {{</* theme/feature-card title="One" */>}}
+  {{</* theme/feature-card title="Two" */>}}
+  {{</* theme/feature-card title="Three" */>}}
+{{</* /theme/feature-grid */>}}
 ```
 
 ### Options
@@ -52,18 +52,18 @@ next: /guide/deploy-site
 | `cols`    | عدد الأعمدة. |
 | `style`   | نمط الشبكة.  |
 
-## `hextra/hero-badge`
+## `theme/hero-badge`
 
 رمز مختصر لعرض شارة تحتوي على رابط.
 
 ### Usage
 
 ```
-{{</* hextra/hero-badge */>}}
+{{</* theme/hero-badge */>}}
   <div class="hx:w-2 hx:h-2 hx:rounded-full hx:bg-primary-400"></div>
   <span>Free, open source</span>
   {{</* icon name="arrow-circle-right" attributes="height=14" */>}}
-{{</* /hextra/hero-badge */>}}
+{{</* /theme/hero-badge */>}}
 ```
 
 ### Options
@@ -74,14 +74,14 @@ next: /guide/deploy-site
 | `class`   | فئة الشارة.  |
 | `style`   | شكل الشارة.  |
 
-## `hextra/hero-button`
+## `theme/hero-button`
 
 رمز مختصر لعرض زر يحتوي على رابط.
 
 ### Usage
 
 ```
-{{</* hextra/hero-button text="Get Started" link="/docs" */>}}
+{{</* theme/hero-button text="Get Started" link="/docs" */>}}
 ```
 
 ### Options
@@ -92,16 +92,16 @@ next: /guide/deploy-site
 | `text`    | نص الزر.    |
 | `style`   | شكل الزر.   |
 
-## `hextra/hero-container`
+## `theme/hero-container`
 
 حاوية بطل بسيطة مع صورة على الجانب الأيسر.
 
 ### Usage
 
 ```
-{{</* hextra/hero-container image="images/logo.svg"  imageTitle="title" */>}}
+{{</* theme/hero-container image="images/logo.svg"  imageTitle="title" */>}}
     Content
-{{</* /hextra/hero-container */>}}
+{{</* /theme/hero-container */>}}
 ```
 
 ### Options
@@ -120,16 +120,16 @@ next: /guide/deploy-site
 | `imageHeight` | ارتفاع الصورة (الافتراضي: `350`).       |
 | `style`       | شكل الحاوية.                            |
 
-## `hextra/hero-headline`
+## `theme/hero-headline`
 
 رمز مختصر لعرض عنوان رئيسي.
 
 ### Usage
 
 ```
-{{</* hextra/hero-headline */>}}
+{{</* theme/hero-headline */>}}
   Build modern websites&nbsp;<br class="hx:sm:block hx:hidden" />with Markdown and Hugo
-{{</* /hextra/hero-headline */>}}
+{{</* /theme/hero-headline */>}}
 ```
 
 ### Options
@@ -138,14 +138,14 @@ next: /guide/deploy-site
 |-----------|----------------|
 | `style`   | أسلوب العنوان. |
 
-## `hextra/hero-section`
+## `theme/hero-section`
 
 قسم بطل بسيط مع عنوان ونمط اختياري.
 
 ### Usage
 
 ```
-{{</* hextra/hero-section heading="h3" */>}}Title{{</* /hextra/hero-section */>}}>
+{{</* theme/hero-section heading="h3" */>}}Title{{</* /theme/hero-section */>}}>
 ```
 
 ### Options
@@ -156,16 +156,16 @@ next: /guide/deploy-site
 | `style`   | نمط العنوان.                   |
 | `content` | محتوى العنوان.                 |
 
-## `hextra/hero-subtitle`
+## `theme/hero-subtitle`
 
 رمز مختصر لعرض عنوان فرعي للبطل.
 
 ### Usage
 
 ```
-{{</* hextra/hero-subtitle */>}}
+{{</* theme/hero-subtitle */>}}
   Fast, batteries-included Hugo theme&nbsp;<br class="hx:sm:block hx:hidden" />for creating beautiful static websites
-{{</* /hextra/hero-subtitle */>}}
+{{</* /theme/hero-subtitle */>}}
 ```
 
 ### Options

@@ -6,16 +6,16 @@ sidebar:
 next: /guide/deploy-site
 ---
 
-The main usage of these shortcodes are within the layout `hextra-home`.
+The main usage of these shortcodes are within the layout `theme-home`.
 
-## `hextra/feature-card`
+## `theme/feature-card`
 
 A shortcode for displaying a feature card.
 
 ### Usage
 
 ```
-{{</* hextra/feature-card title="Title" subtitle="Subtitle" */>}}
+{{</* theme/feature-card title="Title" subtitle="Subtitle" */>}}
 ```
 
 ### Options
@@ -31,18 +31,18 @@ A shortcode for displaying a feature card.
 | `icon`       | The icon of the card.     |
 | `link`       | The link of the card.     |
 
-## `hextra/feature-grid`
+## `theme/feature-grid`
 
 A shortcode for displaying a feature grid.
 
 ### Usage
 
 ```
-{{</* hextra/feature-grid cols="3" */>}}
-  {{</* hextra/feature-card title="One" */>}}
-  {{</* hextra/feature-card title="Two" */>}}
-  {{</* hextra/feature-card title="Three" */>}}
-{{</* /hextra/feature-grid */>}}
+{{</* theme/feature-grid cols="3" */>}}
+  {{</* theme/feature-card title="One" */>}}
+  {{</* theme/feature-card title="Two" */>}}
+  {{</* theme/feature-card title="Three" */>}}
+{{</* /theme/feature-grid */>}}
 ```
 
 ### Options
@@ -52,18 +52,18 @@ A shortcode for displaying a feature grid.
 | `cols`    | The number of columns. |
 | `style`   | The style of the grid. |
 
-## `hextra/hero-badge`
+## `theme/hero-badge`
 
 A shortcode for rendering a badge with a link.
 
 ### Usage
 
 ```
-{{</* hextra/hero-badge */>}}
+{{</* theme/hero-badge */>}}
   <div class="hx:w-2 hx:h-2 hx:rounded-full hx:bg-primary-400"></div>
   <span>Free, open source</span>
   {{</* icon name="arrow-circle-right" attributes="height=14" */>}}
-{{</* /hextra/hero-badge */>}}
+{{</* /theme/hero-badge */>}}
 ```
 
 ### Options
@@ -74,14 +74,14 @@ A shortcode for rendering a badge with a link.
 | `class`   | The class of the badge. |
 | `style`   | The style of the badge. |
 
-## `hextra/hero-button`
+## `theme/hero-button`
 
 A shortcode for rendering a button with a link.
 
 ### Usage
 
 ```
-{{</* hextra/hero-button text="Get Started" link="/docs" */>}}
+{{</* theme/hero-button text="Get Started" link="/docs" */>}}
 ```
 
 ### Options
@@ -92,16 +92,16 @@ A shortcode for rendering a button with a link.
 | `text`    | The text of the button.  |
 | `style`   | The style of the button. |
 
-## `hextra/hero-container`
+## `theme/hero-container`
 
 A simple hero container with an image on the left side.
 
 ### Usage
 
 ```
-{{</* hextra/hero-container image="images/logo.svg"  imageTitle="title" */>}}
+{{</* theme/hero-container image="images/logo.svg"  imageTitle="title" */>}}
     Content
-{{</* /hextra/hero-container */>}}
+{{</* /theme/hero-container */>}}
 ```
 
 ### Options
@@ -120,16 +120,16 @@ A simple hero container with an image on the left side.
 | `imageHeight` | The height of the image (default: `350`).                  |
 | `style`       | The style of the container.                                |
 
-## `hextra/hero-headline`
+## `theme/hero-headline`
 
 A shortcode for displaying a hero headline.
 
 ### Usage
 
 ```
-{{</* hextra/hero-headline */>}}
+{{</* theme/hero-headline */>}}
   Build modern websites&nbsp;<br class="hx:sm:block hx:hidden" />with Markdown and Hugo
-{{</* /hextra/hero-headline */>}}
+{{</* /theme/hero-headline */>}}
 ```
 
 ### Options
@@ -138,14 +138,14 @@ A shortcode for displaying a hero headline.
 |-----------|----------------------------|
 | `style`   | The style of the headline. |
 
-## `hextra/hero-section`
+## `theme/hero-section`
 
 A simple hero section with a heading and optional style.
 
 ### Usage
 
 ```
-{{</* hextra/hero-section heading="h3" */>}}Title{{</* /hextra/hero-section */>}}>
+{{</* theme/hero-section heading="h3" */>}}Title{{</* /theme/hero-section */>}}>
 ```
 
 ### Options
@@ -156,16 +156,16 @@ A simple hero section with a heading and optional style.
 | `style`   | The style of the heading.          |
 | `content` | The content of the heading.        |
 
-## `hextra/hero-subtitle`
+## `theme/hero-subtitle`
 
 A shortcode for displaying a hero subtitle.
 
 ### Usage
 
 ```
-{{</* hextra/hero-subtitle */>}}
+{{</* theme/hero-subtitle */>}}
   Fast, batteries-included Hugo theme&nbsp;<br class="hx:sm:block hx:hidden" />for creating beautiful static websites
-{{</* /hextra/hero-subtitle */>}}
+{{</* /theme/hero-subtitle */>}}
 ```
 
 ### Options

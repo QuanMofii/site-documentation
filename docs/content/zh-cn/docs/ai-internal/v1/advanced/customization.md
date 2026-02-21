@@ -246,6 +246,6 @@ layouts/_partials/custom/head-end.html
 
 ## 进一步自定义
 
-没有找到您需要的内容？欢迎 [发起讨论](https://github.com/imfing/hextra/discussions) 或为主题做出贡献！
+没有找到您需要的内容？欢迎 [发起讨论](https://github.com/your-username/your-project/discussions) 或为主题做出贡献！
 
 [hugo-template-docs]: https://gohugo.io/templates/

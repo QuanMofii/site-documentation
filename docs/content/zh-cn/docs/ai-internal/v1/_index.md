@@ -24,7 +24,7 @@ PROJECT_NAME 是基于 [Tailwind CSS][tailwind-css] 构建的现代化、开箱�
 
 {{< callout emoji="❓" >}}
   PROJECT_NAME 仍在积极开发中。
-  如有疑问或反馈，欢迎[提交 Issue](https://github.com/imfing/hextra/issues)！
+  如有疑问或反馈，欢迎[提交 Issue](https://github.com/your-username/your-project/issues)！
 {{< /callout >}}
 
 ## 下一步

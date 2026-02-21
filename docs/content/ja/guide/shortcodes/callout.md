@@ -1,4 +1,4 @@
-﻿---
+---
 title: コールアウトコンポーネント
 linkTitle: コールアウト
 aliases:
@@ -11,7 +11,7 @@ prev: /guide/shortcodes
 <!--more-->
 
 > [!NOTE]
-> [GitHubスタイルのアラート](../../markdown#alerts)は[v0.9.0](https://github.com/imfing/hextra/releases/tag/v0.9.0)以降でサポートされています。
+> [GitHubスタイルのアラート](../../markdown#alerts)は[v0.9.0](https://github.com/your-username/your-project/releases/tag/v0.9.0)以降でサポートされています。
 > これはMarkdown構文を活用してコールアウトをレンダリングするため、コンテンツの移植性と可読性が向上します。
 
 ## 例

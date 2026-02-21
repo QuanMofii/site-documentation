@@ -241,6 +241,6 @@ Tham khảo [Hugo Templates][hugo-template-docs] để biết thêm.
 
 ## Tùy biến thêm
 
-Không tìm thấy nội dung cần? Hãy [mở discussion](https://github.com/imfing/hextra/discussions) hoặc đóng góp cho theme!
+Không tìm thấy nội dung cần? Hãy [mở discussion](https://github.com/your-username/your-project/discussions) hoặc đóng góp cho theme!
 
 [hugo-template-docs]: https://gohugo.io/templates/

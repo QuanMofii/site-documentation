@@ -1,5 +1,5 @@
-module github.com/imfing/hextra/docs
+module github.com/{author}/{project_name}/docs
 
 go 1.20
 
-replace github.com/imfing/hextra => ../
+replace github.com/{author}/{project_name} => ../

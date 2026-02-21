@@ -19,9 +19,11 @@ weight: 9
 
 これらの設定はすべて**1つのファイル**に集約されています：`hugo.yaml`。
 
+**設定ファイルの場所:** このリポジトリ構造では、メインの設定ファイルは `--source=docs` でHugoを実行する場合（例: `npm run dev:theme`）**`docs/hugo.yaml`**です。本ガイドのパスは特記がない限りこのファイルを指します。
+
 ## 設定ファイルの構造
 
-`hugo.yaml`を開き、`params.project`セクションを見つけてください。これがすべてのプロジェクトメタデータの**単一ソース**です：
+`hugo.yaml`（つまり `docs/hugo.yaml`）を開き、`params.project`セクションを見つけてください。これがすべてのプロジェクトメタデータの**単一ソース**です：
 
 ```yaml {filename="hugo.yaml"}
 params:
@@ -69,7 +71,7 @@ title: "プロジェクト名"
 
 ### メニューリンクを更新
 
-メインメニューのGitHubリンクを更新します。
+メインメニューのGitHubリンクを更新します。**メニューラベル（Products, Versions, Showcase, Blog, Guide）**は**i18n**で翻訳されています。ヘッダー/ナビバーに表示する文言を変えるには、各 `i18n/*.yaml`（例: `i18n/en.yaml`, `i18n/ja.yaml`）の `products`, `versions`, `showcase`, `blog`, `guide`, `more` を編集してください。
 
 ### ブランドアセットを置き換え
 
@@ -101,6 +103,17 @@ title: "プロジェクト名"
 現在のバージョン：{{</* project "currentVersion" */>}}
 ```
 
+## 推奨リブランド順序
+
+以下の順で進めると抜けがありません。
+
+1. **設定** — `hugo.yaml`: `baseURL`, `title`, `params.project.*`, `languages.*.title`, `menu.main`（GitHub）, `params.editURL.base`, `theme`（テーマフォルダ名を変えた場合）
+2. **i18n** — `i18n/*.yaml` の**すべて**のファイル（en, vi, ja, zh-cn, fa 等）で: `copyright`, `poweredBy`、必要に応じてメニューキー（`products`, `versions`, `showcase` 等）
+3. **ブランド** — `static/images/` のロゴとファビコンを差し替え
+4. **バナー** — 使用する言語ごとに `hugo.yaml` の `languages.<lang>.params.banner.message` を更新（下記[言語別バナーメッセージ](#言語別バナーメッセージ)参照）
+5. **コンテンツ** — ホーム、About、および全コンテンツ（front matter・本文）で **PROJECT_NAME** を検索・置換
+6. **プレースホルダー** — [GitHub URLプレースホルダーの置換](#github-urlプレースホルダーの置換)の一覧に従い、`{author}`, `{project_name}`, `your-username`, `your-project` を置換
+
 ## 設定チェックリスト
 
 | 項目 | 場所 | 状態 |
@@ -109,8 +122,111 @@ title: "プロジェクト名"
 | サイトタイトル | `hugo.yaml` → `title` | ☐ |
 | プロジェクト情報 | `hugo.yaml` → `params.project.*` | ☐ |
 | 言語タイトル | `hugo.yaml` → `languages.*.title` | ☐ |
+| テーマキー（テーマフォルダ名を変えた場合） | `hugo.yaml` → `theme` | ☐ |
 | GitHubメニューリンク | `hugo.yaml` → `menu.main` | ☐ |
+| 編集URL | `hugo.yaml` → `params.editURL.base` | ☐ |
 | ロゴファイル | `static/images/logo*.svg` | ☐ |
+| ファビコン | `static/images/favicon.ico` | ☐ |
+| i18n: copyright & poweredBy | **全** `i18n/*.yaml`（en, vi, ja, zh-cn, fa 等） | ☐ |
+| バナーメッセージ | `hugo.yaml` → `languages.*.params.banner.message` | ☐ |
+| ホームページ | `content/*/\_index.md` | ☐ |
+| Aboutページ | `content/*/about/index.md` | ☐ |
+| PROJECT_NAMEの置換 | 全コンテンツ（front matter・本文） | ☐ |
+| Giscus（使用時） | `hugo.yaml` → `params.comments.giscus` | ☐ |
+
+## テーマキー
+
+`hugo.yaml` に `theme: hextra` とあります。これはHugoが読み込む**テーマフォルダ名**です。
+
+- **このリポジトリをそのまま使う場合**（テーマが `hextra` という名前のサブフォルダにある場合）は `theme: hextra` のままでよいです。
+- **テーマフォルダをコピーまたはリネームした場合**（例: `mytheme`）は、`theme: mytheme` に設定してください。
+
+## 言語別バナーメッセージ
+
+ページ上部のバナー文言は、`hugo.yaml` の `languages.<lang>.params.banner.message` で**言語ごと**に設定します。使用する言語ごとに更新してください。
+
+```yaml {filename="hugo.yaml"}
+languages:
+  en:
+    title: Your Project Name
+    params:
+      banner:
+        message: |
+          Your Project **v1.0** is here! 🎉 [What's new]({{% relref "blog/setup-v1" %}})
+  ja:
+    title: プロジェクト名
+    params:
+      banner:
+        message: |
+          プロジェクト **v1.0** リリース！🎉 [新着はこちら]({{% relref "blog/setup-v1" %}})
+```
+
+バナーを無効にするには、その言語の `params.banner` ブロックを削除するか、`message` を空にしてください。
+
+## 手動で更新が必要なファイル
+
+次のファイルは動的設定が使えず、手動で更新します。
+
+| ファイル | 変更内容 |
+|----------|----------|
+| `go.mod` | モジュールパス（Hugo Modules使用時） |
+| `README.md` | プロジェクト説明とバッジ |
+| `LICENSE` | ライセンス種類を変える場合の文言 |
+| `hugo.yaml` → `theme` | テーマフォルダ名を変えた場合 |
+| コンテンツの front matter・本文 | ページタイトルおよび **PROJECT_NAME** の検索・置換 |
+| バナーメッセージ | `hugo.yaml` → `languages.<lang>.params.banner.message`（上記参照） |
+
+## GitHub URLプレースホルダーの置換
+
+テンプレートはコードベース全体でGitHub URLにプレースホルダー値を使用しています：
+- **ドキュメントコンテンツ内**: `your-username` と `your-project`（人間が読みやすい形式）
+- **設定ファイル内**: `{author}` と `{project_name}`（自動置換用）
+
+このテーマをフォークする際は、これらのプレースホルダーを実際のGitHubユーザー名とリポジトリ名に置き換える必要があります。
+
+### 検索と置換
+
+エディタの検索・置換機能を使用して更新：
+
+| プレースホルダー | 置換先 | 例 |
+|------------------|--------|-----|
+| `your-username` | GitHubユーザー名 | `mycompany` |
+| `your-project` | リポジトリ名 | `my-docs` |
+| `{author}` | GitHubユーザー名 | `mycompany` |
+| `{project_name}` | リポジトリ名 | `my-docs` |
+
+### プレースホルダーを含むファイル
+
+| ファイル | プレースホルダー形式 | 目的 |
+|----------|---------------------|------|
+| `go.mod` | `{author}/{project_name}` | Goモジュールパス |
+| `docs/go.mod` | `{author}/{project_name}` | Docsモジュールパス |
+| `theme.toml` | `{author}/{project_name}` | テーマメタデータ |
+| `README.md`, `README.*.md` | `{author}/{project_name}` | プロジェクトドキュメント |
+| `.github/CONTRIBUTING.md` | `{author}/{project_name}` | コントリビューションガイド |
+| `.github/FUNDING.yml` | `{author}` | GitHub Sponsors設定 |
+| `docs/content/**/*.md` | `your-username/your-project` | ドキュメントコンテンツ |
+| `layouts/_partials/components/analytics/*.html` | エラーメッセージ内の `{author}.github.io/{project_name}` | Umami/Matomo/GoatCounter設定のヒント |
+
+### クイック置換コマンド
+
+実行前に、コマンド内の `YOUR_GITHUB_USER` と `YOUR_REPO` を実際のGitHubユーザー名とリポジトリ名に置き換えてください。**設定ファイル**（go.mod, theme.toml 等）は `{author}` / `{project_name}`、**コンテンツ**（`docs/content/**/*.md`）は `your-username` / `your-project` を使用。両方実行します。
+
+```bash
+# Linux/macOS - 設定ファイル
+find . -type f \( -name "*.yaml" -o -name "*.toml" -o -name "go.mod" \) \
+  -exec sed -i 's/{author}/YOUR_GITHUB_USER/g; s/{project_name}/YOUR_REPO/g' {} +
+# Linux/macOS - コンテンツ
+find ./docs/content -type f -name "*.md" \
+  -exec sed -i 's/your-username/YOUR_GITHUB_USER/g; s/your-project/YOUR_REPO/g' {} +
+```
+
+```powershell
+# PowerShell - 設定ファイル
+Get-ChildItem -Recurse -Include *.yaml,*.toml,go.mod | ForEach-Object { (Get-Content $_) -replace '\{author\}','YOUR_GITHUB_USER' -replace '\{project_name\}','YOUR_REPO' | Set-Content $_ }
+# PowerShell - コンテンツ
+Get-ChildItem -Path docs/content -Recurse -Include *.md | ForEach-Object { (Get-Content $_) -replace 'your-username','YOUR_GITHUB_USER' -replace 'your-project','YOUR_REPO' | Set-Content $_ }
+```
 
 ## クイックスタート例
 
@@ -131,3 +247,16 @@ params:
     website: "https://mybusiness.com"
     currentVersion: "v1.0"
 ```
+
+その後更新：
+1. `menu.main`のGitHubリンクURL（identifier: github）
+2. `static/images/`のロゴファイル
+3. ホームページとAboutページのコンテンツ
+
+## マルチデプロイのヒント
+
+1. **ベーステンプレートを維持** - ビジネス固有のコンテンツなしのクリーンなバージョンを保持
+2. **Gitブランチを使用** - 異なるデプロイ用に別々のブランチを作成
+3. **変更を記録** - 各デプロイでカスタマイズした内容をメモ
+4. **セットアップを自動化** - プロジェクト情報を入力するセットアップスクリプトの作成を検討
+5. **PROJECT_NAMEを検索** - テンプレートは`PROJECT_NAME`をプレースホルダーとして使用；実際のプロジェクト名で検索・置換

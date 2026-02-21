@@ -14,11 +14,11 @@ Hugo は静的サイトを生成するため、柔軟なホスティングオプ
 
 [GitHub Pages](https://docs.github.com/pages) は無料でサイトをデプロイ・ホストするための推奨方法です。
 
-[hextra-starter-template](https://github.com/imfing/hextra-starter-template) を使用してサイトを構築した場合、GitHub Pages への自動デプロイを支援する GitHub Actions ワークフローが最初から用意されています。
+[hextra-starter-template](https://github.com/your-username/your-project-starter-template) を使用してサイトを構築した場合、GitHub Pages への自動デプロイを支援する GitHub Actions ワークフローが最初から用意されています。
 
 {{% details title="GitHub Actions 設定" closed="true" %}}
 
-以下は [hextra-starter-template](https://github.com/imfing/hextra-starter-template) の設定例です:
+以下は [hextra-starter-template](https://github.com/your-username/your-project-starter-template) の設定例です:
 
 ```yaml {filename=".github/workflows/pages.yaml"}
 # Hugo サイトをビルドし GitHub Pages にデプロイするサンプルワークフロー
@@ -160,4 +160,4 @@ run: |
    1. Build Command を `hugo --gc --minify` に設定
    2. Install Command を `yum install golang` に設定
 
-![Vercel デプロイ設定](https://github.com/imfing/hextra/assets/5097752/887d949b-8d05-413f-a2b4-7ab92192d0b3)
+![Vercel デプロイ設定](https://github.com/your-username/your-project/assets/5097752/887d949b-8d05-413f-a2b4-7ab92192d0b3)

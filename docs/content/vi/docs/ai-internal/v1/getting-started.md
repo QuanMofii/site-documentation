@@ -10,7 +10,7 @@ prev: /docs
 
 ## Bắt đầu nhanh từ template
 
-{{< icon "github" >}}&nbsp;[imfing/hextra-starter-template](https://github.com/imfing/hextra-starter-template)
+{{< icon "github" >}}&nbsp;[your-username/your-project-starter-template](https://github.com/your-username/your-project-starter-template)
 
 Bạn có thể bắt đầu nhanh bằng cách dùng repository template ở trên.
 
@@ -19,7 +19,7 @@ Bạn có thể bắt đầu nhanh bằng cách dùng repository template ở tr
 Chúng tôi cung cấp [workflow GitHub Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) giúp build và triển khai site lên GitHub Pages tự động, host miễn phí.
 Để xem thêm tùy chọn, tham khảo [Triển khai site](../guide/deploy-site).
 
-[🌐 Demo ↗](https://imfing.github.io/hextra-starter-template/)
+[🌐 Demo ↗](https://your-username.github.io/your-project-starter-template/)
 
 ## Bắt đầu với dự án mới
 
@@ -57,7 +57,7 @@ cd my-site
 hugo mod init github.com/username/my-site
 
 # thêm theme
-hugo mod get github.com/imfing/hextra
+hugo mod get github.com/your-username/your-project
 ```
 
 Thêm vào `hugo.yaml` để dùng theme:
@@ -65,7 +65,7 @@ Thêm vào `hugo.yaml` để dùng theme:
 ```yaml
 module:
   imports:
-    - path: github.com/imfing/hextra
+    - path: github.com/your-username/your-project
 ```
 
 ### Tạo các trang nội dung đầu tiên
@@ -96,16 +96,16 @@ Xem site tại `http://localhost:1313/`.
 hugo mod get -u
 ```
 
-Để cập nhật theme lên [phiên bản phát hành mới nhất](https://github.com/imfing/hextra/releases):
+Để cập nhật theme lên [phiên bản phát hành mới nhất](https://github.com/your-username/your-project/releases):
 
 ```shell
-hugo mod get -u github.com/imfing/hextra
+hugo mod get -u github.com/your-username/your-project
 ```
 
 Nếu muốn thử thay đổi mới nhất trước khi phát hành, cập nhật module trực tiếp lên nhánh development (⚠️ có thể chứa thay đổi chưa ổn định):
 
 ```shell
-hugo mod get -u github.com/imfing/hextra@main
+hugo mod get -u github.com/your-username/your-project@main
 ```
 
 Xem [Hugo Modules](https://gohugo.io/hugo-modules/use-modules/#update-all-modules) để biết thêm.
@@ -144,7 +144,7 @@ git init
 Sau đó thêm theme làm Git submodule:
 
 ```shell
-git submodule add https://github.com/imfing/hextra.git themes/hextra
+git submodule add https://github.com/your-username/your-project.git themes/hextra
 ```
 
 Thêm vào `hugo.yaml` để dùng theme:

@@ -19,9 +19,11 @@ weight: 9
 
 همه این تنظیمات در **یک فایل** متمرکز شده‌اند: `hugo.yaml`.
 
+**مکان فایل پیکربندی:** در این ساختار مخزن، فایل پیکربندی اصلی **`docs/hugo.yaml`** است وقتی Hugo را با `--source=docs` اجرا می‌کنید (مثلاً `npm run dev:theme`). تمام مسیرهای این راهنما به این فایل اشاره دارند مگر خلاف آن ذکر شود.
+
 ## ساختار فایل پیکربندی
 
-فایل `hugo.yaml` را باز کنید و بخش `params.project` را پیدا کنید. این **منبع واحد** برای تمام متادیتای پروژه است:
+فایل `hugo.yaml` (یعنی `docs/hugo.yaml`) را باز کنید و بخش `params.project` را پیدا کنید. این **منبع واحد** برای تمام متادیتای پروژه است:
 
 ```yaml {filename="hugo.yaml"}
 params:
@@ -69,7 +71,7 @@ title: "نام پروژه شما"
 
 ### به‌روزرسانی لینک‌های منو
 
-لینک GitHub را در منوی اصلی به‌روزرسانی کنید.
+لینک GitHub را در منوی اصلی به‌روزرسانی کنید. **برچسب‌های منو (Products, Versions, Showcase, Blog, Guide)** از طریق **i18n** ترجمه می‌شوند. برای تغییر متن نمایش داده شده در هدر/نوار ناوبری، کلیدهای `products`, `versions`, `showcase`, `blog`, `guide`, `more` را در هر فایل `i18n/*.yaml` (مثلاً `i18n/en.yaml`, `i18n/fa.yaml`) ویرایش کنید.
 
 ### جایگزینی دارایی‌های برند
 
@@ -101,6 +103,17 @@ title: "نام پروژه شما"
 نسخه فعلی: {{</* project "currentVersion" */>}}
 ```
 
+## ترتیب پیشنهادی تغییر برند
+
+برای جلوگیری از فراموشی، به این ترتیب پیش بروید:
+
+1. **پیکربندی** — `hugo.yaml`: `baseURL`, `title`, `params.project.*`, `languages.*.title`, `menu.main` (GitHub), `params.editURL.base`, و در صورت تغییر نام پوشه تم: `theme`
+2. **i18n** — در **همه** فایل‌های `i18n/*.yaml` (en, vi, ja, zh-cn, fa و …): `copyright`, `poweredBy` و در صورت نیاز کلیدهای منو (`products`, `versions`, `showcase` و …)
+3. **برند** — جایگزینی لوگو و فاویکون در `static/images/`
+4. **بنر** — به‌روزرسانی `languages.<lang>.params.banner.message` در `hugo.yaml` برای هر زبان (به [پیام بنر به تفکیک زبان](#پیام-بنر-به-تفکیک-زبان) زیر مراجعه کنید)
+5. **محتوا** — صفحه اصلی، درباره ما، و جستجو/جایگزینی **PROJECT_NAME** در همه محتوا (front matter و بدنه)
+6. **جایگزین‌ها** — جایگزینی جایگزین‌های URL گیت‌هاب (`{author}`, `{project_name}`, `your-username`, `your-project`) در فایل‌های فهرست‌شده در [جایگزینی جایگزین‌های URL گیت‌هاب](#جایگزینی-جایگزین‌های-url-گیت‌هاب)
+
 ## چک‌لیست پیکربندی
 
 | مورد | مکان | وضعیت |
@@ -109,8 +122,111 @@ title: "نام پروژه شما"
 | عنوان سایت | `hugo.yaml` → `title` | ☐ |
 | اطلاعات پروژه | `hugo.yaml` → `params.project.*` | ☐ |
 | عناوین زبان | `hugo.yaml` → `languages.*.title` | ☐ |
+| کلید تم (در صورت تغییر نام پوشه تم) | `hugo.yaml` → `theme` | ☐ |
 | لینک GitHub منو | `hugo.yaml` → `menu.main` | ☐ |
+| URL ویرایش | `hugo.yaml` → `params.editURL.base` | ☐ |
 | فایل‌های لوگو | `static/images/logo*.svg` | ☐ |
+| فاویکون | `static/images/favicon.ico` | ☐ |
+| i18n: copyright و poweredBy | **همه** `i18n/*.yaml` (en, vi, ja, zh-cn, fa و …) | ☐ |
+| پیام بنر | `hugo.yaml` → `languages.*.params.banner.message` | ☐ |
+| محتوای صفحه اصلی | `content/*/\_index.md` | ☐ |
+| صفحه درباره ما | `content/*/about/index.md` | ☐ |
+| جایگزینی PROJECT_NAME | همه محتوا (front matter + بدنه) | ☐ |
+| پیکربندی Giscus (در صورت استفاده) | `hugo.yaml` → `params.comments.giscus` | ☐ |
+
+## کلید تم
+
+در `hugo.yaml` مقدار `theme: hextra` را می‌بینید. این **نام پوشه تم** است که Hugo بارگذاری می‌کند.
+
+- **اگر از این مخزن بدون تغییر استفاده می‌کنید** (تم در زیرپوشه‌ای به نام `hextra` است)، همان `theme: hextra` را نگه دارید.
+- **اگر پوشه تم را کپی یا تغییر نام داده‌اید** (مثلاً به `mytheme`)، مقدار را به `theme: mytheme` تنظیم کنید.
+
+## پیام بنر به تفکیک زبان
+
+متن بنر بالای صفحه به **تفکیک زبان** در `hugo.yaml` تحت `languages.<lang>.params.banner.message` تنظیم می‌شود. برای هر زبانی که استفاده می‌کنید به‌روزرسانی کنید:
+
+```yaml {filename="hugo.yaml"}
+languages:
+  en:
+    title: Your Project Name
+    params:
+      banner:
+        message: |
+          Your Project **v1.0** is here! 🎉 [What's new]({{% relref "blog/setup-v1" %}})
+  fa:
+    title: نام پروژه
+    params:
+      banner:
+        message: |
+          پروژه **v1.0** منتشر شد! 🎉 [جدیدها]({{% relref "blog/setup-v1" %}})
+```
+
+برای غیرفعال کردن بنر یک زبان، بلوک `params.banner` آن زبان را حذف کنید یا `message` را خالی بگذارید.
+
+## فایل‌های نیازمند به‌روزرسانی دستی
+
+برخی فایل‌ها از پیکربندی پویا استفاده نمی‌کنند و باید دستی به‌روز شوند:
+
+| فایل | تغییر مورد نیاز |
+|------|-----------------|
+| `go.mod` | مسیر ماژول (در صورت استفاده از Hugo Modules) |
+| `README.md` | توضیحات پروژه و نشان‌ها |
+| `LICENSE` | متن مجوز در صورت تغییر نوع مجوز |
+| `hugo.yaml` → `theme` | در صورت تغییر نام پوشه تم |
+| front matter و بدنه محتوا | عناوین صفحه و هر متن **PROJECT_NAME** در محتوا |
+| پیام بنر | `hugo.yaml` → `languages.<lang>.params.banner.message` (بالا را ببینید) |
+
+## جایگزینی جایگزین‌های URL گیت‌هاب
+
+قالب از مقادیر جایگزین برای URLهای گیت‌هاب در سراسر کدبیس استفاده می‌کند:
+- **در محتوای مستندات**: `your-username` و `your-project` (فرمت قابل خواندن)
+- **در فایل‌های پیکربندی**: `{author}` و `{project_name}` (برای جایگزینی خودکار)
+
+هنگام فورک کردن این تم برای پروژه خود، باید این جایگزین‌ها را با نام کاربری و نام مخزن واقعی گیت‌هاب خود جایگزین کنید.
+
+### جستجو و جایگزینی
+
+از ویژگی جستجو و جایگزینی ویرایشگر خود برای به‌روزرسانی استفاده کنید:
+
+| جایگزین | جایگزین با | مثال |
+|---------|-----------|------|
+| `your-username` | نام کاربری گیت‌هاب شما | `mycompany` |
+| `your-project` | نام مخزن شما | `my-docs` |
+| `{author}` | نام کاربری گیت‌هاب شما | `mycompany` |
+| `{project_name}` | نام مخزن شما | `my-docs` |
+
+### فایل‌های حاوی جایگزین‌ها
+
+| فایل | فرمت جایگزین | هدف |
+|------|-------------|-----|
+| `go.mod` | `{author}/{project_name}` | مسیر ماژول Go |
+| `docs/go.mod` | `{author}/{project_name}` | مسیر ماژول مستندات |
+| `theme.toml` | `{author}/{project_name}` | متادیتای تم |
+| `README.md`, `README.*.md` | `{author}/{project_name}` | مستندات پروژه |
+| `.github/CONTRIBUTING.md` | `{author}/{project_name}` | راهنمای مشارکت |
+| `.github/FUNDING.yml` | `{author}` | پیکربندی GitHub Sponsors |
+| `docs/content/**/*.md` | `your-username/your-project` | محتوای مستندات |
+| `layouts/_partials/components/analytics/*.html` | `{author}.github.io/{project_name}` در پیام خطا | راهنمای پیکربندی Umami/Matomo/GoatCounter |
+
+### دستورات جایگزینی سریع
+
+قبل از اجرا، `YOUR_GITHUB_USER` و `YOUR_REPO` را در دستورات با نام کاربری و نام مخزن واقعی گیت‌هاب خود عوض کنید. **فایل‌های پیکربندی** (go.mod, theme.toml و …) از `{author}` و `{project_name}` استفاده می‌کنند؛ **محتوا** (`docs/content/**/*.md`) از `your-username` و `your-project`. هر دو دستور را اجرا کنید.
+
+```bash
+# Linux/macOS - فایل پیکربندی
+find . -type f \( -name "*.yaml" -o -name "*.toml" -o -name "go.mod" \) \
+  -exec sed -i 's/{author}/YOUR_GITHUB_USER/g; s/{project_name}/YOUR_REPO/g' {} +
+# Linux/macOS - محتوا
+find ./docs/content -type f -name "*.md" \
+  -exec sed -i 's/your-username/YOUR_GITHUB_USER/g; s/your-project/YOUR_REPO/g' {} +
+```
+
+```powershell
+# PowerShell - فایل پیکربندی
+Get-ChildItem -Recurse -Include *.yaml,*.toml,go.mod | ForEach-Object { (Get-Content $_) -replace '\{author\}','YOUR_GITHUB_USER' -replace '\{project_name\}','YOUR_REPO' | Set-Content $_ }
+# PowerShell - محتوا
+Get-ChildItem -Path docs/content -Recurse -Include *.md | ForEach-Object { (Get-Content $_) -replace 'your-username','YOUR_GITHUB_USER' -replace 'your-project','YOUR_REPO' | Set-Content $_ }
+```
 
 ## مثال شروع سریع
 
@@ -131,3 +247,16 @@ params:
     website: "https://mybusiness.com"
     currentVersion: "v1.0"
 ```
+
+سپس به‌روزرسانی کنید:
+1. URL لینک GitHub در `menu.main` (identifier: github)
+2. فایل‌های لوگو در `static/images/`
+3. محتوای صفحه اصلی و صفحه درباره ما
+
+## نکات برای استقرار چندگانه
+
+1. **نگهداری قالب پایه** - یک نسخه تمیز بدون محتوای خاص کسب‌وکار نگه دارید
+2. **استفاده از شاخه‌های Git** - شاخه‌های جداگانه برای استقرارهای مختلف ایجاد کنید
+3. **مستندسازی تغییرات** - یادداشت‌هایی از آنچه برای هر استقرار سفارشی شده نگه دارید
+4. **خودکارسازی راه‌اندازی** - ایجاد یک اسکریپت راه‌اندازی که اطلاعات پروژه را درخواست می‌کند را در نظر بگیرید
+5. **جستجوی PROJECT_NAME** - قالب از `PROJECT_NAME` به عنوان جایگزین استفاده می‌کند؛ آن را جستجو و با نام واقعی پروژه خود جایگزین کنید

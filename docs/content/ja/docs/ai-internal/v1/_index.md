@@ -24,7 +24,7 @@ PROJECT_NAMEは、[Tailwind CSS][tailwind-css]で構築されたモダンで高�
 
 {{< callout emoji="❓" >}}
   PROJECT_NAME は現在も活発に開発中です。
-  質問やフィードバックがありましたら、[issue を開いて](https://github.com/imfing/hextra/issues)ください！
+  質問やフィードバックがありましたら、[issue を開いて](https://github.com/your-username/your-project/issues)ください！
 {{< /callout >}}
 
 ## 次に

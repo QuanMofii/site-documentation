@@ -3,7 +3,7 @@
   <sup align="center"><a href="README.md">English</a> | <a href="README.zh-cn.md">简体中文</a> ｜ <a href="README.fa.md">فارسی</a></sup>
   <p align="center">用于创建美观的静态站点的现代化, 响应式, 功能强大的 Hugo 主题.</p>
 
-演示 → [imfing.github.io/hextra](https://imfing.github.io/hextra/)
+演示 → [{author}.github.io/{project_name}](https://{author}.github.io/{project_name}/)
 </div>
 
 <picture>
@@ -12,7 +12,7 @@
 </picture>
 
 <div align="right">
-<a href="https://github.com/imfing/hextra/actions/workflows/pages.yml"><img alt="GitHub Actions Status" src="https://github.com/imfing/hextra/actions/workflows/pages.yml/badge.svg"></a> <a href="https://app.netlify.com/sites/hugo-hextra/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/61d6e55a-2447-487e-b59f-c9537e5df175/deploy-status"></a>
+<a href="https://github.com/{author}/{project_name}/actions/workflows/pages.yml"><img alt="GitHub Actions Status" src="https://github.com/{author}/{project_name}/actions/workflows/pages.yml/badge.svg"></a> <a href="https://app.netlify.com/sites/hugo-hextra/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/61d6e55a-2447-487e-b59f-c9537e5df175/deploy-status"></a>
 </div>
 
 ## 特性
@@ -28,13 +28,13 @@
 
 ### 使用模板
 
-使用 [Hextra stater template](https://github.com/imfing/hextra-starter-template) 是使用 Hextra 主题的最简单方法. 点击仓库页面上的 `Use this template` 按钮开始使用.
+使用 [Hextra stater template](https://github.com/{author}/{project_name}-starter-template) 是使用 Hextra 主题的最简单方法. 点击仓库页面上的 `Use this template` 按钮开始使用.
 
 此仓库中包含一个 [GitHub Actions workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) 来帮助你免费在 GitHub Pages 上自动构建和部署网站.
 
 ### 使用
 
-转至[文档](https://imfing.github.io/hextra/zh-cn/docs)
+转至[文档](https://{author}.github.io/{project_name}/zh-cn/docs)
 
 ## 贡献
 

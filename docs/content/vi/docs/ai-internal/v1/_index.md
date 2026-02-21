@@ -25,7 +25,7 @@ Giao diện được thiết kế cho website tài liệu, blog và các site đ
 
 {{< callout emoji="❓" >}}
   PROJECT_NAME vẫn đang phát triển tích cực.
-  Có câu hỏi hoặc góp ý? Hãy [mở issue](https://github.com/imfing/hextra/issues)!
+  Có câu hỏi hoặc góp ý? Hãy [mở issue](https://github.com/your-username/your-project/issues)!
 {{< /callout >}}
 
 ## Tiếp theo

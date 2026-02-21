@@ -195,6 +195,226 @@ title: Organize Files
 デフォルトでは、Hugo はサイトを構築するためにルートの `content/` ディレクトリを使用します。
 別のディレクトリ（例えば `docs/`）をコンテンツ用に使用する必要がある場合は、サイト設定 `hugo.yaml` で [`contentDir`](https://gohugo.io/getting-started/configuration/#contentdir) パラメータを設定することで可能です。
 
+## テーマとサイトのアーキテクチャ
+
+このプロジェクトは、**テーマファイル**（プロジェクト間で再利用可能）と**サイトファイル**（このドキュメントサイト固有）を分離するデュアルディレクトリアーキテクチャを使用しています。
+
+### ディレクトリ構造の概要
+
+```
+theme/                          # リポジトリルート
+├── layouts/                     # テーマレイアウト（デフォルトテンプレート）
+├── assets/                      # テーマアセット（CSS、JS）
+├── static/                      # テーマ静的ファイル
+├── data/                        # テーマデータファイル
+├── i18n/                        # テーマ翻訳
+│
+└── docs/                        # サンプル/ドキュメントサイト
+    ├── content/                 # サイトコンテンツ（Markdownファイル）
+    ├── layouts/                 # サイトレイアウトのオーバーライド
+    ├── assets/                  # サイト固有のアセット
+    ├── static/                  # サイト固有の静的ファイル
+    ├── data/                    # サイト固有のデータ
+    └── hugo.yaml                # サイト設定
+```
+
+### Hugo がテーマとサイトファイルを結合する方法
+
+Hugo が `docs/` からサイトをビルドする際、`--themesDir=../..` を使用してリポジトリルートからテーマを読み込みます。その後、Hugo は両方の場所からファイルを**マージ**します：
+
+| ディレクトリ | テーマ（ルート） | サイト（docs/） | 動作 |
+|:------------|:---------------|:---------------|:-----|
+| `layouts/` | デフォルトテンプレート | オーバーライド/拡張 | 同名のサイトファイルがテーマファイルをオーバーライド |
+| `assets/` | テーマCSS、JS | サイト固有アセット | 両方利用可能、サイトがオーバーライド可能 |
+| `static/` | テーマデフォルト | サイト固有ファイル | マージされ、サイトファイルが優先 |
+| `data/` | テーマデータ | サイトデータ | ファイル名でマージ |
+| `content/` | （なし） | すべてのコンテンツ | サイトにのみ存在 |
+
+### 各場所を使用するタイミング
+
+**テーマディレクトリ（ルートレベル）** - 再利用可能なコンポーネント用：
+- このテーマを使用するすべてのサイトで機能するデフォルトレイアウト
+- コアCSS/JSアセット
+- デフォルトのアイコンと画像
+- 翻訳文字列（`i18n/`）
+
+**サイトディレクトリ（`docs/`）** - サイト固有のコンテンツ用：
+- すべてのMarkdownコンテンツファイル
+- このサイト固有のカスタムショートコード
+- サイト固有の画像とアセット
+- 設定のオーバーライド
+
+### 例：レイアウトのオーバーライド
+
+サイト用にテーマレイアウトをカスタマイズするには、`docs/layouts/` の同じパスにコピーします：
+
+{{< filetree/container >}}
+  {{< filetree/folder name="layouts" >}}
+    {{< filetree/folder name="partials" >}}
+      {{< filetree/file name="footer.html" >}}
+    {{< /filetree/folder >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="docs" >}}
+    {{< filetree/folder name="layouts" >}}
+      {{< filetree/folder name="partials" >}}
+        {{< filetree/file name="footer.html" info="（テーマをオーバーライド）" >}}
+      {{< /filetree/folder >}}
+    {{< /filetree/folder >}}
+  {{< /filetree/folder >}}
+{{< /filetree/container >}}
+
+`docs/layouts/partials/footer.html` がテーマのバージョンの代わりに使用されます。
+
+### 生成されたファイル
+
+`docs/resources/_gen/` ディレクトリには、Hugo が生成/キャッシュしたアセット（処理済み画像、コンパイル済みCSS）が含まれています。このディレクトリは自動生成され、通常は `.gitignore` に含めるべきです。
+
+## マルチ製品・バージョン構造
+
+テーマは**製品**と**バージョン**でドキュメントを整理することをサポートしており、複数の製品を持つビジネスや複数リリースのソフトウェアに最適です。
+
+### 製品とバージョンのコンテンツ構造
+
+```
+content/
+└── docs/
+    ├── _index.md              # 製品ランディングページ
+    ├── product-a/             # 製品A
+    │   ├── _index.md
+    │   ├── v1/                # バージョン1
+    │   │   ├── _index.md
+    │   │   ├── getting-started.md
+    │   │   └── advanced/
+    │   └── v2/                # バージョン2（最新）
+    │       ├── _index.md
+    │       └── ...
+    ├── product-b/             # 製品B
+    │   └── v1/
+    └── product-c/             # 製品C
+        └── v1/
+```
+
+### メニュー設定
+
+`hugo.yaml`でドロップダウンメニューを設定して製品とバージョンを表示：
+
+```yaml {filename="hugo.yaml"}
+menu:
+  main:
+    # 製品ドロップダウン（pageRefなしの親アイテム）
+    - identifier: products
+      name: Products
+      weight: 1
+    # 製品の子アイテム
+    - identifier: product-a
+      name: 製品A
+      pageRef: /docs/product-a
+      parent: products
+      weight: 1
+      params:
+        icon: chip
+    - identifier: product-b
+      name: 製品B
+      pageRef: /docs/product-b
+      parent: products
+      weight: 2
+      params:
+        icon: cloud
+
+    # バージョンドロップダウン
+    - identifier: versions
+      name: Versions
+      weight: 2
+    - identifier: ver-v2
+      name: v2（最新）
+      pageRef: /docs/product-a/v2
+      parent: versions
+      weight: 1
+    - identifier: ver-v1
+      name: v1
+      pageRef: /docs/product-a/v1
+      parent: versions
+      weight: 2
+```
+
+### 動作の仕組み
+
+1. **製品ドロップダウン**：`pageRef`なしの親メニューアイテムはドロップダウンになります。`parent: products`を持つ子アイテムがドロップダウンに表示されます。
+2. **バージョンドロップダウン**：同じパターン - ナビゲーション用に利用可能なバージョンを表示。
+3. **サイドバースコープ**：製品のドキュメント（例：`/docs/product-a/v1/...`）を表示すると、サイドバーは自動的にその製品のコンテンツのみにスコープされます。
+
+### 新しい製品の追加
+
+{{< steps >}}
+
+### コンテンツ構造を作成
+
+```bash
+mkdir -p content/docs/my-product/v1
+```
+
+### インデックスファイルを追加
+
+`content/docs/my-product/_index.md`を作成：
+
+```yaml
+---
+title: マイ製品
+---
+```
+
+`content/docs/my-product/v1/_index.md`を作成：
+
+```yaml
+---
+title: マイ製品 v1
+---
+
+マイ製品ドキュメントへようこそ！
+```
+
+### メニューに追加
+
+`hugo.yaml`でproductsメニューに追加：
+
+```yaml
+- identifier: my-product
+  name: マイ製品
+  pageRef: /docs/my-product
+  parent: products
+  weight: 3
+  params:
+    icon: cube
+```
+
+{{< /steps >}}
+
+### 新しいバージョンの追加
+
+{{< steps >}}
+
+### バージョンディレクトリを作成
+
+```bash
+mkdir -p content/docs/my-product/v2
+```
+
+### コンテンツをコピーまたは作成
+
+既存のバージョンからコピーするか、新しいコンテンツを作成。
+
+### versionsメニューを更新
+
+```yaml
+- identifier: ver-v2
+  name: v2（最新）
+  pageRef: /docs/my-product/v2
+  parent: versions
+  weight: 1
+```
+
+{{< /steps >}}
+
 ## 画像の追加
 
 画像を追加する最も簡単な方法は、画像ファイルを Markdown ファイルと同じディレクトリに置くことです。

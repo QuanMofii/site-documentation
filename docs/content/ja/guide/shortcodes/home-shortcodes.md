@@ -6,16 +6,16 @@ sidebar:
 next: /guide/deploy-site
 ---
 
-これらのショートコードの主な使用場所は、レイアウト `hextra-home` 内です。
+これらのショートコードの主な使用場所は、レイアウト `theme-home` 内です。
 
-## `hextra/feature-card`
+## `theme/feature-card`
 
 機能カードを表示するためのショートコード。
 
 ### Usage
 
 ```
-{{</* hextra/feature-card title="Title" subtitle="Subtitle" */>}}
+{{</* theme/feature-card title="Title" subtitle="Subtitle" */>}}
 ```
 
 ### Options
@@ -31,18 +31,18 @@ next: /guide/deploy-site
 | `icon`       | カードのアイコン。   |
 | `link`       | カードのリンク。    |
 
-## `hextra/feature-grid`
+## `theme/feature-grid`
 
 機能グリッドを表示するためのショートコード。
 
 ### Usage
 
 ```
-{{</* hextra/feature-grid cols="3" */>}}
-  {{</* hextra/feature-card title="One" */>}}
-  {{</* hextra/feature-card title="Two" */>}}
-  {{</* hextra/feature-card title="Three" */>}}
-{{</* /hextra/feature-grid */>}}
+{{</* theme/feature-grid cols="3" */>}}
+  {{</* theme/feature-card title="One" */>}}
+  {{</* theme/feature-card title="Two" */>}}
+  {{</* theme/feature-card title="Three" */>}}
+{{</* /theme/feature-grid */>}}
 ```
 
 ### Options
@@ -52,18 +52,18 @@ next: /guide/deploy-site
 | `cols`    | 列の数。        |
 | `style`   | グリッドのスタイル。  |
 
-## `hextra/hero-badge`
+## `theme/hero-badge`
 
 リンク付きのバッジをレンダリングするためのショートコード。
 
 ### Usage
 
 ```
-{{</* hextra/hero-badge */>}}
+{{</* theme/hero-badge */>}}
   <div class="hx:w-2 hx:h-2 hx:rounded-full hx:bg-primary-400"></div>
   <span>Free, open source</span>
   {{</* icon name="arrow-circle-right" attributes="height=14" */>}}
-{{</* /hextra/hero-badge */>}}
+{{</* /theme/hero-badge */>}}
 ```
 
 ### Options
@@ -74,14 +74,14 @@ next: /guide/deploy-site
 | `class`   | バッジのクラス。    |
 | `style`   | バッジのスタイル。   |
 
-## `hextra/hero-button`
+## `theme/hero-button`
 
 リンク付きのボタンをレンダリングするためのショートコード。
 
 ### Usage
 
 ```
-{{</* hextra/hero-button text="Get Started" link="/docs" */>}}
+{{</* theme/hero-button text="Get Started" link="/docs" */>}}
 ```
 
 ### Options
@@ -92,16 +92,16 @@ next: /guide/deploy-site
 | `text`    | ボタンのテキスト。   |
 | `style`   | ボタンのスタイル。   |
 
-## `hextra/hero-container`
+## `theme/hero-container`
 
 左側に画像があるシンプルなヒーロー コンテナー。
 
 ### Usage
 
 ```
-{{</* hextra/hero-container image="images/logo.svg"  imageTitle="title" */>}}
+{{</* theme/hero-container image="images/logo.svg"  imageTitle="title" */>}}
     Content
-{{</* /hextra/hero-container */>}}
+{{</* /theme/hero-container */>}}
 ```
 
 ### Options
@@ -120,16 +120,16 @@ next: /guide/deploy-site
 | `imageHeight` | 画像の高さ（デフォルト：`350`）。               |
 | `style`       | コンテナのスタイル。                        |
 
-## `hextra/hero-headline`
+## `theme/hero-headline`
 
 ヒーローの見出しを表示するためのショートコード。
 
 ### Usage
 
 ```
-{{</* hextra/hero-headline */>}}
+{{</* theme/hero-headline */>}}
   Build modern websites&nbsp;<br class="hx:sm:block hx:hidden" />with Markdown and Hugo
-{{</* /hextra/hero-headline */>}}
+{{</* /theme/hero-headline */>}}
 ```
 
 ### Options
@@ -138,14 +138,14 @@ next: /guide/deploy-site
 |-----------|-------------|
 | `style`   | 見出しのスタイル。   |
 
-## `hextra/hero-section`
+## `theme/hero-section`
 
 見出しとオプションのスタイルを備えたシンプルなヒーロー セクション。
 
 ### Usage
 
 ```
-{{</* hextra/hero-section heading="h3" */>}}Title{{</* /hextra/hero-section */>}}>
+{{</* theme/hero-section heading="h3" */>}}Title{{</* /theme/hero-section */>}}>
 ```
 
 ### Options
@@ -156,16 +156,16 @@ next: /guide/deploy-site
 | `style`   | 見出しのスタイル。            |
 | `content` | 見出しの内容。              |
 
-## `hextra/hero-subtitle`
+## `theme/hero-subtitle`
 
 ヒーローのサブタイトルを表示するためのショートコード。
 
 ### Usage
 
 ```
-{{</* hextra/hero-subtitle */>}}
+{{</* theme/hero-subtitle */>}}
   Fast, batteries-included Hugo theme&nbsp;<br class="hx:sm:block hx:hidden" />for creating beautiful static websites
-{{</* /hextra/hero-subtitle */>}}
+{{</* /theme/hero-subtitle */>}}
 ```
 
 ### Options

@@ -1,4 +1,4 @@
-﻿---
+---
 title: آیکون
 next: /guide/shortcodes/steps
 ---
@@ -9,7 +9,7 @@ next: /guide/shortcodes/steps
 enableInlineShortcodes: true
 ```
 
-لیست آیکون‌های موجود را می‌توانید در [`data/icons.yaml`](https://github.com/imfing/hextra/blob/main/data/icons.yaml) مشاهده کنید.
+لیست آیکون‌های موجود را می‌توانید در [`data/icons.yaml`](https://github.com/your-username/your-project/blob/main/data/icons.yaml) مشاهده کنید.
 
 <!--more-->
 

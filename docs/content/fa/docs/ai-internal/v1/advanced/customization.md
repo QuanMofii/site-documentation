@@ -246,6 +246,6 @@ layouts/_partials/custom/head-end.html
 
 ## سفارشی‌سازی بیشتر
 
-آیا آنچه را که به دنبالش بودید پیدا نکردید؟ با خیال راحت [یک بحث باز کنید](https://github.com/imfing/hextra/discussions) یا به تم کمک کنید!
+آیا آنچه را که به دنبالش بودید پیدا نکردید؟ با خیال راحت [یک بحث باز کنید](https://github.com/your-username/your-project/discussions) یا به تم کمک کنید!
 
 [hugo-template-docs]: https://gohugo.io/templates/

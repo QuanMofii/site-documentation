@@ -195,6 +195,226 @@ title: 组织文件
 默认情况下，Hugo 使用根目录 `content/` 来构建网站。
 如果需要使用其他目录作为内容目录，例如 `docs/`，可以在站点配置 `hugo.yaml` 中设置 [`contentDir`](https://gohugo.io/getting-started/configuration/#contentdir) 参数。
 
+## 主题与站点架构
+
+本项目采用双目录架构，将**主题文件**（可跨项目复用）与**站点文件**（本文档站点专用）分离。
+
+### 目录结构概览
+
+```
+theme/                          # 仓库根目录
+├── layouts/                     # 主题布局（默认模板）
+├── assets/                      # 主题资源（CSS、JS）
+├── static/                      # 主题静态文件
+├── data/                        # 主题数据文件
+├── i18n/                        # 主题翻译
+│
+└── docs/                        # 示例/文档站点
+    ├── content/                 # 站点内容（Markdown 文件）
+    ├── layouts/                 # 站点布局覆盖
+    ├── assets/                  # 站点专用资源
+    ├── static/                  # 站点专用静态文件
+    ├── data/                    # 站点专用数据
+    └── hugo.yaml                # 站点配置
+```
+
+### Hugo 如何合并主题和站点文件
+
+当 Hugo 从 `docs/` 构建站点时，它使用 `--themesDir=../..` 从仓库根目录加载主题。然后 Hugo **合并**来自两个位置的文件：
+
+| 目录 | 主题（根目录） | 站点（docs/） | 行为 |
+|:-----|:-------------|:-------------|:-----|
+| `layouts/` | 默认模板 | 覆盖/扩展 | 同名站点文件覆盖主题文件 |
+| `assets/` | 主题 CSS、JS | 站点专用资源 | 两者都可用，站点可覆盖 |
+| `static/` | 主题默认 | 站点专用文件 | 合并，站点文件优先 |
+| `data/` | 主题数据 | 站点数据 | 按文件名合并 |
+| `content/` | （无） | 所有内容 | 仅存在于站点 |
+
+### 何时使用哪个位置
+
+**主题目录（根级别）** - 用于可复用组件：
+- 适用于使用此主题的任何站点的默认布局
+- 核心 CSS/JS 资源
+- 默认图标和图片
+- 翻译字符串（`i18n/`）
+
+**站点目录（`docs/`）** - 用于站点专用内容：
+- 所有 Markdown 内容文件
+- 本站点专用的自定义短代码
+- 站点专用图片和资源
+- 配置覆盖
+
+### 示例：布局覆盖
+
+要为站点自定义主题布局，将其复制到 `docs/layouts/` 下的相同路径：
+
+{{< filetree/container >}}
+  {{< filetree/folder name="layouts" >}}
+    {{< filetree/folder name="partials" >}}
+      {{< filetree/file name="footer.html" >}}
+    {{< /filetree/folder >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="docs" >}}
+    {{< filetree/folder name="layouts" >}}
+      {{< filetree/folder name="partials" >}}
+        {{< filetree/file name="footer.html" info="（覆盖主题）" >}}
+      {{< /filetree/folder >}}
+    {{< /filetree/folder >}}
+  {{< /filetree/folder >}}
+{{< /filetree/container >}}
+
+`docs/layouts/partials/footer.html` 将代替主题版本使用。
+
+### 生成的文件
+
+`docs/resources/_gen/` 目录包含 Hugo 生成/缓存的资源（处理后的图片、编译后的 CSS）。此目录是自动生成的，通常应添加到 `.gitignore`。
+
+## 多产品和版本结构
+
+主题支持按**产品**和**版本**组织文档，非常适合拥有多个产品的企业或具有多个发布版本的软件。
+
+### 产品和版本的内容结构
+
+```
+content/
+└── docs/
+    ├── _index.md              # 产品着陆页
+    ├── product-a/             # 产品A
+    │   ├── _index.md
+    │   ├── v1/                # 版本1
+    │   │   ├── _index.md
+    │   │   ├── getting-started.md
+    │   │   └── advanced/
+    │   └── v2/                # 版本2（最新）
+    │       ├── _index.md
+    │       └── ...
+    ├── product-b/             # 产品B
+    │   └── v1/
+    └── product-c/             # 产品C
+        └── v1/
+```
+
+### 菜单配置
+
+在`hugo.yaml`中配置下拉菜单以显示产品和版本：
+
+```yaml {filename="hugo.yaml"}
+menu:
+  main:
+    # 产品下拉菜单（无pageRef的父项）
+    - identifier: products
+      name: Products
+      weight: 1
+    # 产品子项
+    - identifier: product-a
+      name: 产品A
+      pageRef: /docs/product-a
+      parent: products
+      weight: 1
+      params:
+        icon: chip
+    - identifier: product-b
+      name: 产品B
+      pageRef: /docs/product-b
+      parent: products
+      weight: 2
+      params:
+        icon: cloud
+
+    # 版本下拉菜单
+    - identifier: versions
+      name: Versions
+      weight: 2
+    - identifier: ver-v2
+      name: v2（最新）
+      pageRef: /docs/product-a/v2
+      parent: versions
+      weight: 1
+    - identifier: ver-v1
+      name: v1
+      pageRef: /docs/product-a/v1
+      parent: versions
+      weight: 2
+```
+
+### 工作原理
+
+1. **产品下拉菜单**：没有`pageRef`的父菜单项会变成下拉菜单。带有`parent: products`的子项会显示在下拉菜单中。
+2. **版本下拉菜单**：相同模式 - 显示可用版本供导航。
+3. **侧边栏范围**：查看产品文档（如`/docs/product-a/v1/...`）时，侧边栏会自动限定为该产品的内容。
+
+### 添加新产品
+
+{{< steps >}}
+
+### 创建内容结构
+
+```bash
+mkdir -p content/docs/my-product/v1
+```
+
+### 添加索引文件
+
+创建`content/docs/my-product/_index.md`：
+
+```yaml
+---
+title: 我的产品
+---
+```
+
+创建`content/docs/my-product/v1/_index.md`：
+
+```yaml
+---
+title: 我的产品 v1
+---
+
+欢迎使用我的产品文档！
+```
+
+### 添加到菜单
+
+在`hugo.yaml`中添加到products菜单：
+
+```yaml
+- identifier: my-product
+  name: 我的产品
+  pageRef: /docs/my-product
+  parent: products
+  weight: 3
+  params:
+    icon: cube
+```
+
+{{< /steps >}}
+
+### 添加新版本
+
+{{< steps >}}
+
+### 创建版本目录
+
+```bash
+mkdir -p content/docs/my-product/v2
+```
+
+### 复制或创建内容
+
+从现有版本复制或创建新内容。
+
+### 更新versions菜单
+
+```yaml
+- identifier: ver-v2
+  name: v2（最新）
+  pageRef: /docs/my-product/v2
+  parent: versions
+  weight: 1
+```
+
+{{< /steps >}}
+
 ## 添加图片
 
 添加图片最简单的方法是将图片文件放在与 Markdown 文件相同的目录中。

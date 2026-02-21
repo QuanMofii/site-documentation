@@ -16,6 +16,20 @@ hasCJKLanguage: true
 #   googleAnalytics:
 #     ID: G-MEASUREMENT_ID
 
+# Output formats for LLM-friendly content and markdown export
+outputFormats:
+  llms:
+    name: llms
+    baseName: llms
+    mediaType: text/plain
+    isPlainText: true
+  markdown:
+    name: markdown
+    baseName: index
+    mediaType: text/markdown
+    isPlainText: true
+    ugly: true
+
 outputs:
   home: [html, llms]
   page: [html, markdown]
@@ -38,7 +52,7 @@ languages:
     params:
       banner:
         message: |
-          PROJECT_NAME **v0.11** منتشر شد! 🎉 [تازه‌ها را ببینید]({{% relref "blog/v0.11" %}})
+          PROJECT_NAME **v1** منتشر شد! 🎉 [تازه‌ها را ببینید]({{% relref "blog/setup-v1" %}})
       page:
         contextMenu:
           links:
@@ -54,7 +68,7 @@ languages:
     params:
       banner:
         message: |
-          PROJECT_NAME **v0.11** がリリースされました！🎉 [新着情報はこちら]({{% relref "blog/v0.11" %}})
+          PROJECT_NAME **v1** がリリースされました！🎉 [新着情報はこちら]({{% relref "blog/setup-v1" %}})
       page:
         contextMenu:
           links:
@@ -70,7 +84,7 @@ languages:
     params:
       banner:
         message: |
-          PROJECT_NAME **v0.11** 发布啦！🎉 查看[更新内容]({{% relref "blog/v0.11" %}})
+          PROJECT_NAME **v1** 发布啦！🎉 查看[更新内容]({{% relref "blog/setup-v1" %}})
       page:
         contextMenu:
           links:
@@ -86,7 +100,7 @@ languages:
     params:
       banner:
         message: |
-          PROJECT_NAME **v0.11** đã ra mắt! 🎉 [Xem nội dung mới]({{% relref "blog/v0.11" %}})
+          PROJECT_NAME **v1** đã ra mắt! 🎉 [Xem nội dung mới]({{% relref "blog/setup-v1" %}})
       page:
         contextMenu:
           links:
@@ -94,14 +108,17 @@ languages:
               icon: chatgpt
               url: "https://chatgpt.com/?hints=search&q=T%C3%B4i+%C4%91ang+xem+t%C3%A0i+li%E1%BB%87u+n%C3%A0y%3A+{url}%0AGi%C3%BAp+t%C3%B4i+hi%E1%BB%83u+c%C3%A1ch+s%E1%BB%AD+d%E1%BB%A5ng."
 
+theme: hextra
+
 module:
   hugoVersion:
     extended: true
     min: "0.146.0"
 
   workspace: hugo.work
-  imports:
-    - path: github.com/imfing/hextra
+  # NOTE: When using as Hugo module, update this path to your forked repository
+  # imports:
+  #   - path: github.com/your-org/your-theme-repo
 
 markup:
   highlight:
@@ -179,7 +196,7 @@ menu:
       name: GitHub
       weight: 7
       # NOTE: This URL should match params.project.github
-      url: "https://github.com/imfing/hextra"
+      url: "https://github.com/your-org/your-docs-repo"
       params:
         icon: github
     - identifier: site-config
@@ -244,9 +261,9 @@ params:
     email: ""                                         # Contact email (optional)
     
     # Links
-    website: "https://imfing.github.io/hextra/"       # Main website URL
-    github: "https://github.com/imfing/hextra"        # GitHub repository
-    githubEditBase: "https://github.com/imfing/hextra/edit/main/docs/content"
+    website: "https://example.com/"                   # Main website URL
+    github: "https://github.com/your-org/your-docs-repo"  # GitHub repository
+    githubEditBase: "https://github.com/your-org/your-docs-repo/edit/main/docs/content"
     
     # Social links (optional - leave empty if not used)
     twitter: ""
@@ -257,11 +274,11 @@ params:
     logoDark: "images/logo-dark.svg"
     
     # Version info
-    currentVersion: "v0.11"
+    currentVersion: "v1"
     
     # License
     license: "MIT"
-    licenseUrl: "https://github.com/imfing/hextra/blob/main/LICENSE"
+    licenseUrl: "https://github.com/your-org/your-docs-repo/blob/main/LICENSE"
 
   # ===========================================================================
   # END PROJECT INFO
@@ -272,9 +289,9 @@ params:
   externalLinkDecoration: true
 
   banner:
-    key: 'announcement-v0.11'
+    key: 'announcement-v1'
     message: |
-      PROJECT_NAME **v0.11** is here! 🎉 Discover [what's new]({{% relref "blog/v0.11" %}})
+      PROJECT_NAME **v1** is here! 🎉 Discover [what's new]({{% relref "blog/setup-v1" %}})
 
   navbar:
     displayTitle: true
@@ -321,7 +338,7 @@ params:
   editURL:
     enable: true
     # NOTE: This should match params.project.githubEditBase
-    base: "https://github.com/imfing/hextra/edit/main/docs/content"
+    base: "https://github.com/your-org/your-docs-repo/edit/main/docs/content"
 
   blog:
     list:
@@ -375,7 +392,7 @@ params:
     # https://giscus.app/
     # NOTE: Update these values for your own repository
     giscus:
-      repo: imfing/hextra
-      repoId: R_kgDOJ9fJag
+      repo: your-org/your-docs-repo
+      repoId: YOUR_REPO_ID
       category: General
-      categoryId: DIC_kwDOJ9fJas4CY7gW
+      categoryId: YOUR_CATEGORY_ID

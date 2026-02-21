@@ -19,9 +19,11 @@ When deploying this documentation template for a new business, you need to updat
 
 All these settings are centralized in **one file**: `hugo.yaml`.
 
+**Config file location:** In this repository structure, the main config file is **`docs/hugo.yaml`** when you run Hugo with `--source=docs` (e.g. `npm run dev:theme`). All paths in this guide refer to that file unless noted.
+
 ## Configuration File Structure
 
-Open `hugo.yaml` and locate the `params.project` section. This is the **single source of truth** for all project metadata:
+Open `hugo.yaml` (i.e. `docs/hugo.yaml`) and locate the `params.project` section. This is the **single source of truth** for all project metadata:
 
 ```yaml {filename="hugo.yaml"}
 params:
@@ -122,6 +124,8 @@ menu:
         icon: github
 ```
 
+**Menu labels (Products, Versions, Showcase, Blog, Guide):** These are translated via **i18n**. To change the text shown in the header/navbar, edit the keys `products`, `versions`, `showcase`, `blog`, `guide`, `more` in each `i18n/*.yaml` file (e.g. `i18n/en.yaml`, `i18n/vi.yaml`).
+
 ### Update Edit URL
 
 Update the base URL for the "Edit this page" feature:
@@ -201,6 +205,17 @@ Visit the {{</* project-link "website" "official website" */>}}
 Licensed under {{</* project-link "license" */>}}
 ```
 
+## Recommended Rebrand Order
+
+Follow this order to avoid missing steps:
+
+1. **Config** — `hugo.yaml`: `baseURL`, `title`, `params.project.*`, `languages.*.title`, `menu.main` (GitHub), `params.editURL.base`, `theme` (if you renamed the theme folder).
+2. **i18n** — In **every** file in `i18n/*.yaml` (en, vi, ja, zh-cn, fa, de, fr, …): `copyright`, `poweredBy`, and menu keys (`products`, `versions`, `showcase`, etc.) if you need translated labels.
+3. **Branding** — Replace `static/images/` logo and favicon.
+4. **Banners** — Update `languages.<lang>.params.banner.message` in `hugo.yaml` for each language (see [Banner messages](#banner-messages-per-language) below).
+5. **Content** — Homepage, About, and search/replace **PROJECT_NAME** in all content (front matter and body).
+6. **Placeholders** — Replace GitHub URL placeholders (`{author}`, `{project_name}`, `your-username`, `your-project`) in the files listed in [Replacing GitHub URL Placeholders](#replacing-github-url-placeholders).
+
 ## Configuration Checklist
 
 Use this checklist when setting up for a new business:
@@ -211,13 +226,46 @@ Use this checklist when setting up for a new business:
 | Site title | `hugo.yaml` → `title` | ☐ |
 | Project info | `hugo.yaml` → `params.project.*` | ☐ |
 | Language titles | `hugo.yaml` → `languages.*.title` | ☐ |
+| Theme key (if theme folder renamed) | `hugo.yaml` → `theme` | ☐ |
 | GitHub menu link | `hugo.yaml` → `menu.main` | ☐ |
 | Edit URL | `hugo.yaml` → `params.editURL.base` | ☐ |
 | Logo files | `static/images/logo*.svg` | ☐ |
 | Favicon | `static/images/favicon.ico` | ☐ |
+| i18n: copyright & poweredBy | **All** `i18n/*.yaml` (en, vi, ja, zh-cn, fa, …) | ☐ |
+| Banner messages | `hugo.yaml` → `languages.*.params.banner.message` | ☐ |
 | Homepage content | `content/*/\_index.md` | ☐ |
 | About page | `content/*/about/index.md` | ☐ |
+| Replace PROJECT_NAME | All content (front matter + body) | ☐ |
 | Giscus config (if used) | `hugo.yaml` → `params.comments.giscus` | ☐ |
+
+## Theme Key
+
+In `hugo.yaml` you will see `theme: hextra`. This is the **theme folder name** Hugo loads.
+
+- **If you use this repo as-is** (theme in a subfolder named `hextra`), leave it as `theme: hextra`.
+- **If you copy or rename the theme folder** (e.g. to `mytheme`), set `theme: mytheme` so Hugo loads the correct layout.
+
+## Banner Messages (per language)
+
+The top-of-page banner text is set **per language** in `hugo.yaml` under `languages.<lang>.params.banner.message`. Update each language you use:
+
+```yaml {filename="hugo.yaml"}
+languages:
+  en:
+    title: Your Project Name
+    params:
+      banner:
+        message: |
+          Your Project **v1.0** is here! 🎉 [What's new]({{% relref "blog/setup-v1" %}})
+  vi:
+    title: Tên Dự Án
+    params:
+      banner:
+        message: |
+          Dự án **v1.0** đã ra mắt! 🎉 [Xem thêm]({{% relref "blog/setup-v1" %}})
+```
+
+To disable the banner for a language, remove the `params.banner` block or set `message` to an empty string.
 
 ## Files Requiring Manual Updates
 
@@ -228,8 +276,69 @@ Some files cannot use dynamic configuration and must be updated manually:
 | `go.mod` | Module path (if using Hugo Modules) |
 | `README.md` | Project description and badges |
 | `LICENSE` | License text if changing license type |
-| Content front matter | Page titles containing project name |
-| Banner messages | `hugo.yaml` → `params.banner.message` and per-language banners |
+| `hugo.yaml` → `theme` | Set to your theme folder name if you renamed it |
+| Content front matter & body | Page titles and any **PROJECT_NAME** text in content |
+| Banner messages | `hugo.yaml` → `languages.<lang>.params.banner.message` (see above) |
+
+## Replacing GitHub URL Placeholders
+
+The template uses placeholder values for GitHub URLs throughout the codebase:
+- **In documentation content**: `your-username` and `your-project` (human-readable)
+- **In config files**: `{author}` and `{project_name}` (for automated replacement)
+
+When forking this theme for your project, you need to replace these placeholders with your actual GitHub username and repository name.
+
+### Search and Replace
+
+Use your editor's find-and-replace feature to update:
+
+| Placeholder | Replace With | Example |
+|-------------|--------------|---------|
+| `your-username` | Your GitHub username | `mycompany` |
+| `your-project` | Your repository name | `my-docs` |
+| `{author}` | Your GitHub username | `mycompany` |
+| `{project_name}` | Your repository name | `my-docs` |
+
+### Files Containing Placeholders
+
+These files contain GitHub URL placeholders that need updating:
+
+| File | Placeholder Format | Purpose |
+|------|-------------------|---------|
+| `go.mod` | `{author}/{project_name}` | Go module path |
+| `docs/go.mod` | `{author}/{project_name}` | Docs module path |
+| `theme.toml` | `{author}/{project_name}` | Theme metadata |
+| `README.md`, `README.*.md` | `{author}/{project_name}` | Project documentation |
+| `.github/CONTRIBUTING.md` | `{author}/{project_name}` | Contribution guide |
+| `.github/FUNDING.yml` | `{author}` | GitHub Sponsors config |
+| `docs/content/**/*.md` | `your-username/your-project` | Documentation content |
+| `layouts/_partials/components/analytics/*.html` | `{author}.github.io/{project_name}` in error messages | Umami, Matomo, GoatCounter config hints |
+
+### Quick Replace Commands
+
+Before running: replace `YOUR_GITHUB_USER` and `YOUR_REPO` in the commands with your real GitHub username and repository name.
+
+**Config files** (go.mod, theme.toml, etc.) use `{author}` and `{project_name}`. **Content files** (`docs/content/**/*.md`) use `your-username` and `your-project`. Run both:
+
+```bash
+# Linux/macOS - Config files ({author} → your value)
+find . -type f \( -name "*.yaml" -o -name "*.toml" -o -name "go.mod" \) \
+  -exec sed -i 's/{author}/YOUR_GITHUB_USER/g; s/{project_name}/YOUR_REPO/g' {} +
+
+# Linux/macOS - Content files (your-username/your-project → your value)
+find ./docs/content -type f -name "*.md" \
+  -exec sed -i 's/your-username/YOUR_GITHUB_USER/g; s/your-project/YOUR_REPO/g' {} +
+```
+
+```powershell
+# Windows PowerShell - Config files
+Get-ChildItem -Recurse -Include *.yaml,*.toml,go.mod | 
+  ForEach-Object { (Get-Content $_) -replace '\{author\}','YOUR_GITHUB_USER' -replace '\{project_name\}','YOUR_REPO' | Set-Content $_ }
+
+# Windows PowerShell - Content files
+Get-ChildItem -Path docs/content -Recurse -Include *.md |
+  ForEach-Object { (Get-Content $_) -replace 'your-username','YOUR_GITHUB_USER' -replace 'your-project','YOUR_REPO' | Set-Content $_ }
+```
 
 ## Quick Start Example
 
@@ -252,7 +361,7 @@ params:
 ```
 
 Then update:
-1. GitHub menu link URL
+1. GitHub menu link URL in `menu.main` (identifier: github)
 2. Logo files in `static/images/`
 3. Homepage and About page content
 
@@ -262,3 +371,4 @@ Then update:
 2. **Use Git branches** - Create separate branches for different deployments
 3. **Document changes** - Keep notes on what was customized for each deployment
 4. **Automate setup** - Consider creating a setup script that prompts for project info
+5. **Search for PROJECT_NAME** - The template uses `PROJECT_NAME` as a placeholder; search and replace it with your actual project name

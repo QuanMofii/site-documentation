@@ -19,9 +19,11 @@ Khi triển khai template tài liệu này cho một doanh nghiệp mới, bạn
 
 Tất cả cài đặt này được tập trung trong **một file**: `hugo.yaml`.
 
+**Vị trí file cấu hình:** Trong cấu trúc repo này, file cấu hình chính là **`docs/hugo.yaml`** khi bạn chạy Hugo với `--source=docs` (ví dụ `npm run dev:theme`). Mọi đường dẫn trong hướng dẫn đều áp dụng cho file đó trừ khi có ghi chú khác.
+
 ## Cấu trúc File Cấu hình
 
-Mở `hugo.yaml` và tìm phần `params.project`. Đây là **nguồn duy nhất** cho tất cả metadata dự án:
+Mở `hugo.yaml` (tức `docs/hugo.yaml`) và tìm phần `params.project`. Đây là **nguồn duy nhất** cho tất cả metadata dự án:
 
 ```yaml {filename="hugo.yaml"}
 params:
@@ -122,6 +124,8 @@ menu:
         icon: github
 ```
 
+**Nhãn menu (Products, Versions, Showcase, Blog, Guide):** Các mục này được dịch qua **i18n**. Để đổi chữ hiển thị trên header/navbar, sửa các key `products`, `versions`, `showcase`, `blog`, `guide`, `more` trong từng file `i18n/*.yaml` (ví dụ `i18n/en.yaml`, `i18n/vi.yaml`).
+
 ### Cập nhật URL Chỉnh sửa
 
 Cập nhật URL base cho tính năng "Chỉnh sửa trang này":
@@ -201,6 +205,17 @@ Truy cập {{</* project-link "website" "website chính thức" */>}}
 Được cấp phép theo {{</* project-link "license" */>}}
 ```
 
+## Thứ tự Rebrand Đề xuất
+
+Làm lần lượt theo thứ tự sau để tránh bỏ sót:
+
+1. **Cấu hình** — `hugo.yaml`: `baseURL`, `title`, `params.project.*`, `languages.*.title`, `menu.main` (GitHub), `params.editURL.base`, `theme` (nếu bạn đổi tên thư mục theme).
+2. **i18n** — Trong **mọi** file trong `i18n/*.yaml` (en, vi, ja, zh-cn, fa, …): `copyright`, `poweredBy`, và các key menu (`products`, `versions`, `showcase`, …) nếu cần nhãn dịch.
+3. **Thương hiệu** — Thay logo và favicon trong `static/images/`.
+4. **Banner** — Cập nhật `languages.<lang>.params.banner.message` trong `hugo.yaml` cho từng ngôn ngữ (xem [Thông báo Banner theo ngôn ngữ](#thông-báo-banner-theo-ngôn-ngữ) bên dưới).
+5. **Nội dung** — Trang chủ, About, và tìm/thay **PROJECT_NAME** trong toàn bộ nội dung (front matter và body).
+6. **Placeholder** — Thay placeholder URL GitHub (`{author}`, `{project_name}`, `your-username`, `your-project`) trong các file liệt kê ở [Thay thế Placeholder URL GitHub](#thay-thế-placeholder-url-github).
+
 ## Danh sách Kiểm tra Cấu hình
 
 Sử dụng danh sách này khi thiết lập cho doanh nghiệp mới:
@@ -211,13 +226,46 @@ Sử dụng danh sách này khi thiết lập cho doanh nghiệp mới:
 | Tiêu đề site | `hugo.yaml` → `title` | ☐ |
 | Thông tin dự án | `hugo.yaml` → `params.project.*` | ☐ |
 | Tiêu đề ngôn ngữ | `hugo.yaml` → `languages.*.title` | ☐ |
+| Theme key (nếu đổi tên thư mục theme) | `hugo.yaml` → `theme` | ☐ |
 | Link GitHub menu | `hugo.yaml` → `menu.main` | ☐ |
 | URL chỉnh sửa | `hugo.yaml` → `params.editURL.base` | ☐ |
 | File logo | `static/images/logo*.svg` | ☐ |
 | Favicon | `static/images/favicon.ico` | ☐ |
+| i18n: copyright & poweredBy | **Tất cả** `i18n/*.yaml` (en, vi, ja, zh-cn, fa, …) | ☐ |
+| Thông báo banner | `hugo.yaml` → `languages.*.params.banner.message` | ☐ |
 | Nội dung trang chủ | `content/*/\_index.md` | ☐ |
 | Trang Giới thiệu | `content/*/about/index.md` | ☐ |
+| Thay PROJECT_NAME | Toàn bộ nội dung (front matter + body) | ☐ |
 | Cấu hình Giscus (nếu dùng) | `hugo.yaml` → `params.comments.giscus` | ☐ |
+
+## Theme Key
+
+Trong `hugo.yaml` có dòng `theme: hextra`. Đây là **tên thư mục theme** mà Hugo tải.
+
+- **Nếu bạn dùng repo nguyên bản** (theme trong thư mục tên `hextra`), giữ nguyên `theme: hextra`.
+- **Nếu bạn copy hoặc đổi tên thư mục theme** (ví dụ thành `mytheme`), đặt `theme: mytheme` để Hugo tải đúng layout.
+
+## Thông báo Banner theo ngôn ngữ
+
+Chữ banner phía trên trang được cấu hình **theo từng ngôn ngữ** trong `hugo.yaml` tại `languages.<lang>.params.banner.message`. Cập nhật cho từng ngôn ngữ bạn dùng:
+
+```yaml {filename="hugo.yaml"}
+languages:
+  en:
+    title: Your Project Name
+    params:
+      banner:
+        message: |
+          Your Project **v1.0** is here! 🎉 [What's new]({{% relref "blog/setup-v1" %}})
+  vi:
+    title: Tên Dự Án
+    params:
+      banner:
+        message: |
+          Dự án **v1.0** đã ra mắt! 🎉 [Xem thêm]({{% relref "blog/setup-v1" %}})
+```
+
+Để tắt banner cho một ngôn ngữ, xóa block `params.banner` hoặc để `message` rỗng.
 
 ## Các File Cần Cập nhật Thủ công
 
@@ -228,8 +276,67 @@ Một số file không thể dùng cấu hình động và phải cập nhật t
 | `go.mod` | Đường dẫn module (nếu dùng Hugo Modules) |
 | `README.md` | Mô tả dự án và badges |
 | `LICENSE` | Nội dung giấy phép nếu thay đổi loại |
-| Front matter nội dung | Tiêu đề trang chứa tên dự án |
-| Thông báo banner | `hugo.yaml` → `params.banner.message` và banner theo ngôn ngữ |
+| `hugo.yaml` → `theme` | Đặt tên thư mục theme nếu bạn đã đổi tên |
+| Front matter & body nội dung | Tiêu đề trang và mọi chữ **PROJECT_NAME** trong nội dung |
+| Thông báo banner | `hugo.yaml` → `languages.<lang>.params.banner.message` (xem trên) |
+
+## Thay thế Placeholder URL GitHub
+
+Template sử dụng các giá trị placeholder cho URL GitHub trong toàn bộ codebase:
+- **Trong nội dung documentation**: `your-username` và `your-project` (dễ đọc)
+- **Trong file config**: `{author}` và `{project_name}` (cho thay thế tự động)
+
+Khi fork theme này cho dự án của bạn, bạn cần thay thế các placeholder này bằng username GitHub và tên repository thực tế.
+
+### Tìm và Thay thế
+
+Sử dụng tính năng find-and-replace của editor để cập nhật:
+
+| Placeholder | Thay bằng | Ví dụ |
+|-------------|-----------|-------|
+| `your-username` | Username GitHub của bạn | `mycompany` |
+| `your-project` | Tên repository | `my-docs` |
+| `{author}` | Username GitHub của bạn | `mycompany` |
+| `{project_name}` | Tên repository | `my-docs` |
+
+### Các File Chứa Placeholder
+
+| File | Định dạng Placeholder | Mục đích |
+|------|----------------------|----------|
+| `go.mod` | `{author}/{project_name}` | Đường dẫn Go module |
+| `docs/go.mod` | `{author}/{project_name}` | Đường dẫn module docs |
+| `theme.toml` | `{author}/{project_name}` | Metadata theme |
+| `README.md`, `README.*.md` | `{author}/{project_name}` | Tài liệu dự án |
+| `.github/CONTRIBUTING.md` | `{author}/{project_name}` | Hướng dẫn đóng góp |
+| `.github/FUNDING.yml` | `{author}` | Cấu hình GitHub Sponsors |
+| `docs/content/**/*.md` | `your-username/your-project` | Nội dung documentation |
+| `layouts/_partials/components/analytics/*.html` | `{author}.github.io/{project_name}` trong thông báo lỗi | Gợi ý cấu hình Umami, Matomo, GoatCounter |
+
+### Lệnh Thay thế Nhanh
+
+Trước khi chạy: thay `YOUR_GITHUB_USER` và `YOUR_REPO` trong lệnh bằng username và tên repo GitHub thực của bạn.
+
+**File config** (go.mod, theme.toml, …) dùng `{author}` và `{project_name}`. **File content** (`docs/content/**/*.md`) dùng `your-username` và `your-project`. Chạy cả hai nhóm lệnh:
+
+```bash
+# Linux/macOS - File config ({author} → giá trị của bạn)
+find . -type f \( -name "*.yaml" -o -name "*.toml" -o -name "go.mod" \) \
+  -exec sed -i 's/{author}/YOUR_GITHUB_USER/g; s/{project_name}/YOUR_REPO/g' {} +
+
+# Linux/macOS - File content (your-username/your-project → giá trị của bạn)
+find ./docs/content -type f -name "*.md" \
+  -exec sed -i 's/your-username/YOUR_GITHUB_USER/g; s/your-project/YOUR_REPO/g' {} +
+```
+
+```powershell
+# Windows PowerShell - File config
+Get-ChildItem -Recurse -Include *.yaml,*.toml,go.mod | 
+  ForEach-Object { (Get-Content $_) -replace '\{author\}','YOUR_GITHUB_USER' -replace '\{project_name\}','YOUR_REPO' | Set-Content $_ }
+
+# Windows PowerShell - File content
+Get-ChildItem -Path docs/content -Recurse -Include *.md |
+  ForEach-Object { (Get-Content $_) -replace 'your-username','YOUR_GITHUB_USER' -replace 'your-project','YOUR_REPO' | Set-Content $_ }
+```
 
 ## Ví dụ Bắt đầu Nhanh
 
@@ -252,7 +359,7 @@ params:
 ```
 
 Sau đó cập nhật:
-1. URL link GitHub trong menu
+1. URL link GitHub trong `menu.main` (identifier: github)
 2. File logo trong `static/images/`
 3. Nội dung trang chủ và trang Giới thiệu
 
@@ -262,3 +369,4 @@ Sau đó cập nhật:
 2. **Sử dụng Git branches** - Tạo branch riêng cho các triển khai khác nhau
 3. **Ghi chú các thay đổi** - Lưu lại những gì đã tùy chỉnh cho mỗi triển khai
 4. **Tự động hóa thiết lập** - Cân nhắc tạo script setup nhắc nhập thông tin dự án
+5. **Tìm kiếm PROJECT_NAME** - Template sử dụng `PROJECT_NAME` làm placeholder; tìm và thay thế bằng tên dự án thực tế của bạn

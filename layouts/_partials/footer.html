@@ -33,12 +33,9 @@
 </footer>
 
 {{- define "theme-credit" -}}
-  <a class="hx:flex hx:text-sm hx:items-center hx:gap-1 hx:text-current" target="_blank" rel="noopener noreferrer" title="Hextra GitHub Homepage" href="https://github.com/imfing/hextra">
+  <a class="hx:flex hx:text-sm hx:items-center hx:gap-1 hx:text-current" target="_blank" rel="noopener noreferrer" title="{{ site.Params.project.name | default "PROJECT_NAME" }} GitHub Homepage" href="{{ site.Params.project.github | default "https://github.com/{author}/{project_name}" }}">
     <span>
       {{- . | markdownify -}}
-      {{- if strings.Contains . "Hextra" -}}
-        {{- partial "utils/icon.html" (dict "name" "hextra" "attributes" `height=1em class="hx:inline-block hx:ltr:ml-1 hx:rtl:mr-1 hx:align-[-2.5px]"`) -}}
-      {{- end -}}
     </span>
   </a>
 {{- end -}}

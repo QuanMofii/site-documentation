@@ -10,7 +10,7 @@ prev: /docs
 
 ## شروع سریع با قالب
 
-{{< icon "github" >}}&nbsp;[imfing/hextra-starter-template](https://github.com/imfing/hextra-starter-template)
+{{< icon "github" >}}&nbsp;[your-username/your-project-starter-template](https://github.com/your-username/your-project-starter-template)
 
 می‌توانید با استفاده از مخزن قالب فوق به سرعت شروع به کار کنید.
 
@@ -19,7 +19,7 @@ prev: /docs
 ما یک [گردش کار GitHub Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) ارائه کرده‌ایم که می‌تواند به صورت خودکار سایت شما را ساخته و در GitHub Pages مستقر کند و به صورت رایگان میزبانی کند.
 برای گزینه‌های بیشتر، [استقرار سایت](../guide/deploy-site) را بررسی کنید.
 
-[🌐 نسخه نمایشی ↗](https://imfing.github.io/hextra-starter-template/)
+[🌐 نسخه نمایشی ↗](https://your-username.github.io/your-project-starter-template/)
 
 ## شروع به عنوان پروژه جدید
 
@@ -57,7 +57,7 @@ cd my-site
 hugo mod init github.com/username/my-site
 
 # افزودن تم
-hugo mod get github.com/imfing/hextra
+hugo mod get github.com/your-username/your-project
 ```
 
 فایل `hugo.yaml` را برای استفاده از تم با افزودن موارد زیر پیکربندی کنید:
@@ -65,7 +65,7 @@ hugo mod get github.com/imfing/hextra
 ```yaml
 module:
   imports:
-    - path: github.com/imfing/hextra
+    - path: github.com/your-username/your-project
 ```
 
 ### ایجاد اولین صفحات محتوای شما
@@ -96,10 +96,10 @@ hugo server --buildDrafts --disableFastRender
 hugo mod get -u
 ```
 
-برای به‌روزرسانی تم به [آخرین نسخه منتشر شده](https://github.com/imfing/hextra/releases)، دستور زیر را اجرا کنید:
+برای به‌روزرسانی تم به [آخرین نسخه منتشر شده](https://github.com/your-username/your-project/releases)، دستور زیر را اجرا کنید:
 
 ```shell
-hugo mod get -u github.com/imfing/hextra
+hugo mod get -u github.com/your-username/your-project
 ```
 
 برای جزئیات بیشتر، [ماژول‌های Hugo](https://gohugo.io/hugo-modules/use-modules/#update-all-modules) را ببینید.
@@ -137,7 +137,7 @@ git init
 سپس، تم را به عنوان زیرماژول Git اضافه کنید:
 
 ```shell
-git submodule add https://github.com/imfing/hextra.git themes/hextra
+git submodule add https://github.com/your-username/your-project.git themes/hextra
 ```
 
 فایل `hugo.yaml` را برای استفاده از تم با افزودن موارد زیر پیکربندی کنید:

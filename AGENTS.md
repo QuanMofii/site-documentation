@@ -38,7 +38,7 @@ npm run build:css
 ### Hugo Theme Structure
 
 - **Base Layout**: `layouts/baseof.html` wraps all pages
-- **Specialized Layouts**: `layouts/docs/`, `layouts/blog/`, `layouts/hextra-home.html`
+- **Specialized Layouts**: `layouts/docs/`, `layouts/blog/`, `layouts/home.html`
 - **Partials**: Reusable components in `layouts/_partials/`
   - Core UI: `navbar.html`, `sidebar.html`, `footer.html`, `breadcrumb.html`, `toc.html`
   - Utilities: `layouts/_partials/utils/` for helper functions

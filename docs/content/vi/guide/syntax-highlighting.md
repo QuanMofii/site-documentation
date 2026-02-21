@@ -46,12 +46,12 @@ def say_hello():
 Bạn có thể dùng thuộc tính `base_url` để cung cấp URL gốc, kết hợp với tên file tạo thành liên kết. Tên file có thể chứa đường dẫn tương đối nếu cần chỉ vị trí file trong đường dẫn gốc.
 
 ````markdown {filename="Markdown"}
-```go {base_url="https://github.com/imfing/hextra/blob/main/",filename="docs/hugo.work"}
+```go {base_url="https://github.com/example/repo/blob/main/",filename="docs/hugo.work"}
 go 1.20
 ```
 ````
 
-```go {base_url="https://github.com/imfing/hextra/blob/main/",filename="docs/hugo.work"}
+```go {base_url="https://github.com/example/repo/blob/main/",filename="docs/hugo.work"}
 go 1.20
 ```
 

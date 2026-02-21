@@ -97,10 +97,22 @@
   {{- if $useMainMenu -}}
     {{- $items = slice -}}
     {{- range $menuItem := site.Menus.main -}}
+      {{- /* Include items with pages */ -}}
       {{- with $menuItem.Page -}}
         {{- if ne .Params.sidebar.exclude true -}}
           {{- $items = $items | append . -}}
           {{- $menuNamesByPath = merge $menuNamesByPath (dict .Path (or (T $menuItem.Identifier) $menuItem.Name)) -}}
+        {{- end -}}
+      {{- end -}}
+      {{- /* Also include children of dropdown menus (items without pageRef but with children) */ -}}
+      {{- if and (not $menuItem.Page) $menuItem.HasChildren -}}
+        {{- range $child := $menuItem.Children -}}
+          {{- with $child.Page -}}
+            {{- if ne .Params.sidebar.exclude true -}}
+              {{- $items = $items | append . -}}
+              {{- $menuNamesByPath = merge $menuNamesByPath (dict .Path (or (T $child.Identifier) $child.Name)) -}}
+            {{- end -}}
+          {{- end -}}
         {{- end -}}
       {{- end -}}
     {{- end -}}

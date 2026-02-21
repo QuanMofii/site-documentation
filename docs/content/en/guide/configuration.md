@@ -7,7 +7,7 @@ tags:
 
 Hugo reads its configuration from `hugo.yaml` in the root of your Hugo site.
 The config file is where you can configure all aspects of your site.
-Check out the config file for this site [`docs/hugo.yaml`](https://github.com/imfing/hextra/blob/main/docs/hugo.yaml) on GitHub to get a comprehensive idea of available settings and best practices.
+Check out the config file for this site [`docs/hugo.yaml`](https://github.com/your-username/your-project/blob/main/docs/hugo.yaml) on GitHub to get a comprehensive idea of available settings and best practices.
 
 <!--more-->
 
@@ -35,7 +35,7 @@ menu:
         type: search
     - name: GitHub
       weight: 5
-      url: "https://github.com/imfing/hextra"
+      url: "https://github.com/your-username/your-project"
       params:
         icon: github
 ```
@@ -237,13 +237,13 @@ In this file, specify your new copyright text as shown below:
 copyright: "© 2024 YOUR TEXT HERE"
 ```
 
-For your reference, an example [`i18n/en.yaml`](https://github.com/imfing/hextra/blob/main/i18n/en.yaml) file can be found in the GitHub repository. Additionally, you could use Markdown format in the copyright text.
+For your reference, an example [`i18n/en.yaml`](https://github.com/your-username/your-project/blob/main/i18n/en.yaml) file can be found in the GitHub repository. Additionally, you could use Markdown format in the copyright text.
 
 ## Others
 
 ### Favicon
 
-To customize the [favicon](https://en.wikipedia.org/wiki/Favicon) for your site, place icon files under the `static` folder to override the [default favicons from the theme](https://github.com/imfing/hextra/tree/main/static):
+To customize the [favicon](https://en.wikipedia.org/wiki/Favicon) for your site, place icon files under the `static` folder to override the [default favicons from the theme](https://github.com/your-username/your-project/tree/main/static):
 
 {{< filetree/container >}}
   {{< filetree/folder name="static" >}}
@@ -672,7 +672,7 @@ params:
   banner:
     key: 'announcement-xxx'
     message: |
-      🎉 Welcome! [PROJECT_NAME](https://github.com/hextra/hextra) is a static site generator that helps you build modern websites.
+      🎉 Welcome! [PROJECT_NAME](https://github.com/your-username/your-project) is a static site generator that helps you build modern websites.
 ```
 
 The banner will be displayed on all pages.

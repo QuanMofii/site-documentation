@@ -10,7 +10,7 @@ prev: /docs
 
 ## 从模板快速启动
 
-{{< icon "github" >}}&nbsp;[imfing/hextra-starter-template](https://github.com/imfing/hextra-starter-template)
+{{< icon "github" >}}&nbsp;[your-username/your-project-starter-template](https://github.com/your-username/your-project-starter-template)
 
 您可以通过使用上述模板仓库快速开始。
 
@@ -19,7 +19,7 @@ prev: /docs
 我们提供了一个[GitHub Actions工作流](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow)，可以帮助自动构建并将您的站点部署到GitHub Pages，并免费托管。
 更多选项，请查看[部署站点](../guide/deploy-site)。
 
-[🌐 演示 ↗](https://imfing.github.io/hextra-starter-template/)
+[🌐 演示 ↗](https://your-username.github.io/your-project-starter-template/)
 
 ## 作为新项目启动
 
@@ -57,7 +57,7 @@ cd my-site
 hugo mod init github.com/username/my-site
 
 # 添加主题
-hugo mod get github.com/imfing/hextra
+hugo mod get github.com/your-username/your-project
 ```
 
 配置`hugo.yaml`以使用主题，添加以下内容：
@@ -65,7 +65,7 @@ hugo mod get github.com/imfing/hextra
 ```yaml
 module:
   imports:
-    - path: github.com/imfing/hextra
+    - path: github.com/your-username/your-project
 ```
 
 ### 创建您的内容页面
@@ -96,10 +96,10 @@ hugo server --buildDrafts --disableFastRender
 hugo mod get -u
 ```
 
-要将主题更新到[最新发布版本](https://github.com/imfing/hextra/releases)，运行以下命令：
+要将主题更新到[最新发布版本](https://github.com/your-username/your-project/releases)，运行以下命令：
 
 ```shell
-hugo mod get -u github.com/imfing/hextra
+hugo mod get -u github.com/your-username/your-project
 ```
 
 更多详情请参阅[Hugo模块](https://gohugo.io/hugo-modules/use-modules/#update-all-modules)。
@@ -137,7 +137,7 @@ git init
 然后，将主题添加为Git子模块：
 
 ```shell
-git submodule add https://github.com/imfing/hextra.git themes/hextra
+git submodule add https://github.com/your-username/your-project.git themes/hextra
 ```
 
 配置`hugo.yaml`以使用主题，添加以下内容：

@@ -215,6 +215,226 @@ cascade:
 
 Mặc định Hugo dùng thư mục gốc `content/` để build site. Nếu cần dùng thư mục khác (ví dụ `docs/`), đặt tham số [`contentDir`](https://gohugo.io/getting-started/configuration/#contentdir) trong cấu hình site `hugo.yaml`.
 
+## Kiến trúc Theme vs Site
+
+Dự án này sử dụng kiến trúc hai thư mục tách biệt **file theme** (tái sử dụng được cho nhiều dự án) và **file site** (riêng cho site tài liệu này).
+
+### Tổng quan cấu trúc thư mục
+
+```
+theme/                          # Thư mục gốc repository
+├── layouts/                     # Layout theme (template mặc định)
+├── assets/                      # Asset theme (CSS, JS)
+├── static/                      # File tĩnh theme
+├── data/                        # File dữ liệu theme
+├── i18n/                        # Bản dịch theme
+│
+└── docs/                        # Site ví dụ/tài liệu
+    ├── content/                 # Nội dung site (file Markdown)
+    ├── layouts/                 # Ghi đè layout site
+    ├── assets/                  # Asset riêng site
+    ├── static/                  # File tĩnh riêng site
+    ├── data/                    # Dữ liệu riêng site
+    └── hugo.yaml                # Cấu hình site
+```
+
+### Cách Hugo kết hợp file Theme và Site
+
+Khi Hugo build site từ `docs/`, nó dùng `--themesDir=../..` để load theme từ thư mục gốc repository. Hugo sau đó **gộp** file từ cả hai vị trí:
+
+| Thư mục | Theme (gốc) | Site (docs/) | Hành vi |
+|:--------|:------------|:-------------|:--------|
+| `layouts/` | Template mặc định | Ghi đè/mở rộng | File site ghi đè file theme cùng tên |
+| `assets/` | CSS, JS theme | Asset riêng site | Cả hai đều dùng được, site có thể ghi đè |
+| `static/` | Mặc định theme | File riêng site | Gộp lại, file site ưu tiên hơn |
+| `data/` | Dữ liệu theme | Dữ liệu site | Gộp theo tên file |
+| `content/` | (không có) | Toàn bộ nội dung | Chỉ tồn tại trong site |
+
+### Khi nào dùng thư mục nào
+
+**Thư mục theme (cấp gốc)** - cho component tái sử dụng:
+- Layout mặc định hoạt động cho mọi site dùng theme này
+- Asset CSS/JS cốt lõi
+- Icon và ảnh mặc định
+- Chuỗi dịch (`i18n/`)
+
+**Thư mục site (`docs/`)** - cho nội dung riêng site:
+- Tất cả file nội dung Markdown
+- Shortcode tùy chỉnh riêng site này
+- Ảnh và asset riêng site
+- Ghi đè cấu hình
+
+### Ví dụ: Ghi đè Layout
+
+Để tùy chỉnh layout theme cho site, copy nó vào đường dẫn tương tự trong `docs/layouts/`:
+
+{{< filetree/container >}}
+  {{< filetree/folder name="layouts" >}}
+    {{< filetree/folder name="partials" >}}
+      {{< filetree/file name="footer.html" >}}
+    {{< /filetree/folder >}}
+  {{< /filetree/folder >}}
+  {{< filetree/folder name="docs" >}}
+    {{< filetree/folder name="layouts" >}}
+      {{< filetree/folder name="partials" >}}
+        {{< filetree/file name="footer.html" info="(ghi đè theme)" >}}
+      {{< /filetree/folder >}}
+    {{< /filetree/folder >}}
+  {{< /filetree/folder >}}
+{{< /filetree/container >}}
+
+File `docs/layouts/partials/footer.html` sẽ được dùng thay cho phiên bản của theme.
+
+### File được tạo tự động
+
+Thư mục `docs/resources/_gen/` chứa asset được tạo/cache bởi Hugo (ảnh đã xử lý, CSS đã compile). Thư mục này được tạo tự động và thường nên đưa vào `.gitignore`.
+
+## Cấu trúc Đa Sản phẩm và Phiên bản
+
+Theme hỗ trợ tổ chức tài liệu theo **sản phẩm** và **phiên bản**, lý tưởng cho doanh nghiệp có nhiều sản phẩm hoặc phần mềm có nhiều bản phát hành.
+
+### Cấu trúc Nội dung cho Sản phẩm và Phiên bản
+
+```
+content/
+└── docs/
+    ├── _index.md              # Trang landing sản phẩm
+    ├── san-pham-a/            # Sản phẩm A
+    │   ├── _index.md
+    │   ├── v1/                # Phiên bản 1
+    │   │   ├── _index.md
+    │   │   ├── getting-started.md
+    │   │   └── advanced/
+    │   └── v2/                # Phiên bản 2 (mới nhất)
+    │       ├── _index.md
+    │       └── ...
+    ├── san-pham-b/            # Sản phẩm B
+    │   └── v1/
+    └── san-pham-c/            # Sản phẩm C
+        └── v1/
+```
+
+### Cấu hình Menu
+
+Cấu hình menu dropdown trong `hugo.yaml` để hiển thị sản phẩm và phiên bản:
+
+```yaml {filename="hugo.yaml"}
+menu:
+  main:
+    # Dropdown Sản phẩm (item cha không có pageRef)
+    - identifier: products
+      name: Products
+      weight: 1
+    # Item con của sản phẩm
+    - identifier: san-pham-a
+      name: Sản phẩm A
+      pageRef: /docs/san-pham-a
+      parent: products
+      weight: 1
+      params:
+        icon: chip
+    - identifier: san-pham-b
+      name: Sản phẩm B
+      pageRef: /docs/san-pham-b
+      parent: products
+      weight: 2
+      params:
+        icon: cloud
+
+    # Dropdown Phiên bản
+    - identifier: versions
+      name: Versions
+      weight: 2
+    - identifier: ver-v2
+      name: v2 (mới nhất)
+      pageRef: /docs/san-pham-a/v2
+      parent: versions
+      weight: 1
+    - identifier: ver-v1
+      name: v1
+      pageRef: /docs/san-pham-a/v1
+      parent: versions
+      weight: 2
+```
+
+### Cách hoạt động
+
+1. **Dropdown Sản phẩm**: Item menu cha không có `pageRef` sẽ thành dropdown. Item con có `parent: products` xuất hiện trong dropdown.
+2. **Dropdown Phiên bản**: Cùng mẫu - hiển thị các phiên bản có sẵn để điều hướng.
+3. **Sidebar theo phạm vi**: Khi xem tài liệu của một sản phẩm (ví dụ `/docs/san-pham-a/v1/...`), sidebar tự động giới hạn vào nội dung của sản phẩm đó.
+
+### Thêm Sản phẩm Mới
+
+{{< steps >}}
+
+### Tạo cấu trúc nội dung
+
+```bash
+mkdir -p content/docs/san-pham-moi/v1
+```
+
+### Thêm file index
+
+Tạo `content/docs/san-pham-moi/_index.md`:
+
+```yaml
+---
+title: Sản phẩm Mới
+---
+```
+
+Tạo `content/docs/san-pham-moi/v1/_index.md`:
+
+```yaml
+---
+title: Sản phẩm Mới v1
+---
+
+Chào mừng đến với tài liệu Sản phẩm Mới!
+```
+
+### Thêm vào menu
+
+Trong `hugo.yaml`, thêm vào menu products:
+
+```yaml
+- identifier: san-pham-moi
+  name: Sản phẩm Mới
+  pageRef: /docs/san-pham-moi
+  parent: products
+  weight: 3
+  params:
+    icon: cube
+```
+
+{{< /steps >}}
+
+### Thêm Phiên bản Mới
+
+{{< steps >}}
+
+### Tạo thư mục phiên bản
+
+```bash
+mkdir -p content/docs/san-pham-moi/v2
+```
+
+### Copy hoặc tạo nội dung
+
+Copy từ phiên bản có sẵn hoặc tạo nội dung mới.
+
+### Cập nhật menu versions
+
+```yaml
+- identifier: ver-v2
+  name: v2 (mới nhất)
+  pageRef: /docs/san-pham-moi/v2
+  parent: versions
+  weight: 1
+```
+
+{{< /steps >}}
+
 ## Thêm ảnh
 
 Cách đơn giản nhất là đặt file ảnh cùng thư mục với file Markdown. Ví dụ thêm file `image.png` bên cạnh `my-page.md`:

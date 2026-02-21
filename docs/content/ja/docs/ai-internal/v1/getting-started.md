@@ -10,7 +10,7 @@ prev: /docs
 
 ## テンプレートから始める
 
-{{< icon "github" >}}&nbsp;[imfing/hextra-starter-template](https://github.com/imfing/hextra-starter-template)
+{{< icon "github" >}}&nbsp;[your-username/your-project-starter-template](https://github.com/your-username/your-project-starter-template)
 
 上記のテンプレートリポジトリを使用して、すぐに始めることができます。
 
@@ -19,7 +19,7 @@ prev: /docs
 [GitHub Actions ワークフロー](https://docs.github.com/ja/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow)を提供しており、サイトを自動的にビルドして GitHub Pages にデプロイし、無料でホストすることができます。
 その他のオプションについては、[サイトのデプロイ](../guide/deploy-site)を確認してください。
 
-[🌐 デモ ↗](https://imfing.github.io/hextra-starter-template/)
+[🌐 デモ ↗](https://your-username.github.io/your-project-starter-template/)
 
 ## 新規プロジェクトとして始める
 
@@ -57,7 +57,7 @@ cd my-site
 hugo mod init github.com/username/my-site
 
 # テーマを追加
-hugo mod get github.com/imfing/hextra
+hugo mod get github.com/your-username/your-project
 ```
 
 `hugo.yaml` を設定してテーマを使用するようにします:
@@ -65,7 +65,7 @@ hugo mod get github.com/imfing/hextra
 ```yaml
 module:
   imports:
-    - path: github.com/imfing/hextra
+    - path: github.com/your-username/your-project
 ```
 
 ### 最初のコンテンツページを作成
@@ -96,10 +96,10 @@ hugo server --buildDrafts --disableFastRender
 hugo mod get -u
 ```
 
-テーマを[最新リリースバージョン](https://github.com/imfing/hextra/releases)に更新するには、次のコマンドを実行します:
+テーマを[最新リリースバージョン](https://github.com/your-username/your-project/releases)に更新するには、次のコマンドを実行します:
 
 ```shell
-hugo mod get -u github.com/imfing/hextra
+hugo mod get -u github.com/your-username/your-project
 ```
 
 詳細については、[Hugo モジュール](https://gohugo.io/hugo-modules/use-modules/#update-all-modules)を参照してください。
@@ -137,7 +137,7 @@ git init
 次に、テーマを Git サブモジュールとして追加します:
 
 ```shell
-git submodule add https://github.com/imfing/hextra.git themes/hextra
+git submodule add https://github.com/your-username/your-project.git themes/hextra
 ```
 
 `hugo.yaml` を設定してテーマを使用するようにします:

@@ -246,6 +246,6 @@ layouts/_partials/custom/head-end.html
 
 ## さらなるカスタマイズ
 
-探しているものが見つかりませんでしたか？[ディスカッションを開く](https://github.com/imfing/hextra/discussions)か、テーマへの貢献をお願いします！
+探しているものが見つかりませんでしたか？[ディスカッションを開く](https://github.com/your-username/your-project/discussions)か、テーマへの貢献をお願いします！
 
 [hugo-template-docs]: https://gohugo.io/templates/

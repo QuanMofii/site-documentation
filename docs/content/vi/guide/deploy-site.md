@@ -13,11 +13,11 @@ Hugo tạo website tĩnh, cho phép linh hoạt trong cách host. Trang này hư
 
 [GitHub Pages](https://docs.github.com/pages) là cách được khuyến nghị để triển khai và host website miễn phí.
 
-Nếu bạn tạo site từ [hextra-starter-template](https://github.com/imfing/hextra-starter-template), template đã có sẵn workflow GitHub Actions để tự động triển khai lên GitHub Pages.
+Nếu bạn tạo site từ [hextra-starter-template](https://github.com/your-username/your-project-starter-template), template đã có sẵn workflow GitHub Actions để tự động triển khai lên GitHub Pages.
 
 {{% details title="Cấu hình GitHub Actions" closed="true" %}}
 
-Dưới đây là ví dụ cấu hình từ [hextra-starter-template](https://github.com/imfing/hextra-starter-template):
+Dưới đây là ví dụ cấu hình từ [hextra-starter-template](https://github.com/your-username/your-project-starter-template):
 
 ```yaml {filename=".github/workflows/pages.yaml"}
 # Workflow mẫu để build và triển khai site Hugo lên GitHub Pages
@@ -155,4 +155,4 @@ Xem [Hugo trên Netlify](https://docs.netlify.com/integrations/frameworks/hugo/)
    1. Build Command: `hugo --gc --minify`
    2. Install Command: `yum install golang`
 
-![Cấu hình triển khai Vercel](https://github.com/imfing/hextra/assets/5097752/887d949b-8d05-413f-a2b4-7ab92192d0b3)
+![Cấu hình triển khai Vercel](https://github.com/your-username/your-project/assets/5097752/887d949b-8d05-413f-a2b4-7ab92192d0b3)

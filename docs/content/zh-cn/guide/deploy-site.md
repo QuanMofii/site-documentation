@@ -14,11 +14,11 @@ Hugo 生成静态网站，支持灵活的托管方案。
 
 [GitHub Pages](https://docs.github.com/pages) 是推荐的免费部署托管方案。
 
-若使用 [hextra-starter-template](https://github.com/imfing/hextra-starter-template) 初始化项目，已内置 GitHub Actions 工作流，可自动部署至 GitHub Pages。
+若使用 [hextra-starter-template](https://github.com/your-username/your-project-starter-template) 初始化项目，已内置 GitHub Actions 工作流，可自动部署至 GitHub Pages。
 
 {{% details title="GitHub Actions 配置" closed="true" %}}
 
-以下是 [hextra-starter-template](https://github.com/imfing/hextra-starter-template) 的示例配置：
+以下是 [hextra-starter-template](https://github.com/your-username/your-project-starter-template) 的示例配置：
 
 ```yaml {filename=".github/workflows/pages.yaml"}
 # 构建并部署 Hugo 站点到 GitHub Pages 的示例工作流
@@ -161,4 +161,4 @@ run: |
    1. 构建命令设为 `hugo --gc --minify`
    2. 安装命令设为 `yum install golang`
 
-![Vercel 部署配置](https://github.com/imfing/hextra/assets/5097752/887d949b-8d05-413f-a2b4-7ab92192d0b3)
+![Vercel 部署配置](https://github.com/your-username/your-project/assets/5097752/887d949b-8d05-413f-a2b4-7ab92192d0b3)

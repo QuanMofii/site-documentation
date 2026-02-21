@@ -1,6 +1,7 @@
 {{- $version := .Get "version" | default "" -}}
 {{- $icon := .Get "icon" | default "" -}}
-{{- $defaultLink := cond (eq $version "") "https://github.com/imfing/hextra/tree/main" (printf "https://github.com/imfing/hextra/releases/tag/%s" $version) -}}
+{{- $projectGithub := site.Params.project.github | default "https://github.com/{author}/{project_name}" -}}
+{{- $defaultLink := cond (eq $version "") (printf "%s/tree/main" $projectGithub) (printf "%s/releases/tag/%s" $projectGithub $version) -}}
 {{- $link := .Get "link" | default $defaultLink -}}
 {{- $content := cond (eq $version "") "New in main branch" (printf "New in %s" $version) -}}
 

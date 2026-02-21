@@ -1,4 +1,4 @@
-﻿---
+---
 title: Icon
 next: /guide/shortcodes/steps
 ---
@@ -9,7 +9,7 @@ To use this shortcode inline, inline shortcode needs to be enabled in the config
 enableInlineShortcodes: true
 ```
 
-List of available icons can be found in [`data/icons.yaml`](https://github.com/imfing/hextra/blob/main/data/icons.yaml).
+List of available icons can be found in [`data/icons.yaml`](https://github.com/your-username/your-project/blob/main/data/icons.yaml).
 
 <!--more-->
 

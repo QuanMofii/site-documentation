@@ -14,11 +14,11 @@ Hugo وبسایت‌های استاتیک تولید می‌کند که امکا
 
 [GitHub Pages](https://docs.github.com/pages) روش توصیه‌شده برای استقرار و میزبانی رایگان وبسایت شماست.
 
-اگر سایت را با استفاده از [hextra-starter-template](https://github.com/imfing/hextra-starter-template) راه‌اندازی کرده‌اید، این قالب از پیش یک گردش کار GitHub Actions برای استقرار خودکار در GitHub Pages ارائه می‌دهد.
+اگر سایت را با استفاده از [hextra-starter-template](https://github.com/your-username/your-project-starter-template) راه‌اندازی کرده‌اید، این قالب از پیش یک گردش کار GitHub Actions برای استقرار خودکار در GitHub Pages ارائه می‌دهد.
 
 {{% details title="پیکربندی GitHub Actions" closed="true" %}}
 
-در زیر یک نمونه پیکربندی از [hextra-starter-template](https://github.com/imfing/hextra-starter-template) آمده است:
+در زیر یک نمونه پیکربندی از [hextra-starter-template](https://github.com/your-username/your-project-starter-template) آمده است:
 
 ```yaml {filename=".github/workflows/pages.yaml"}
 # نمونه گردش کار برای ساخت و استقرار یک سایت Hugo در GitHub Pages
@@ -161,4 +161,4 @@ run: |
    1. دستور ساخت را روی `hugo --gc --minify` تنظیم کنید.
    2. دستور نصب را روی `yum install golang` تنظیم کنید.
 
-![پیکربندی استقرار Vercel](https://github.com/imfing/hextra/assets/5097752/887d949b-8d05-413f-a2b4-7ab92192d0b3)
+![پیکربندی استقرار Vercel](https://github.com/your-username/your-project/assets/5097752/887d949b-8d05-413f-a2b4-7ab92192d0b3)

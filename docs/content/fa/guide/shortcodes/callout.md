@@ -1,4 +1,4 @@
-﻿---
+---
 title: کامپوننت Callout
 linkTitle: Callout
 aliases:
@@ -11,7 +11,7 @@ prev: /guide/shortcodes
 <!--more-->
 
 > [!NOTE]
-> [هشدارهای سبک GitHub](../../markdown#alerts) از [نسخه 0.9.0](https://github.com/imfing/hextra/releases/tag/v0.9.0) پشتیبانی می‌شوند.
+> [هشدارهای سبک GitHub](../../markdown#alerts) از [نسخه 0.9.0](https://github.com/your-username/your-project/releases/tag/v0.9.0) پشتیبانی می‌شوند.
 > این ویژگی از سینتکس Markdown برای رندر کردن callout استفاده می‌کند که باعث بهبود قابلیت حمل و خوانایی محتوا می‌شود.
 
 ## أمثلة

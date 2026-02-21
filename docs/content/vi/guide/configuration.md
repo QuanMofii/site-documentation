@@ -7,7 +7,7 @@ tags:
 
 Hugo đọc cấu hình từ file `hugo.yaml` tại thư mục gốc của site Hugo.
 File cấu hình là nơi bạn thiết lập mọi khía cạnh của site.
-Tham khảo file cấu hình của site mẫu [`docs/hugo.yaml`](https://github.com/imfing/hextra/blob/main/docs/hugo.yaml) trên GitHub để nắm các thiết lập và best practice.
+Tham khảo file cấu hình của site mẫu [`docs/hugo.yaml`](https://github.com/your-username/your-project/blob/main/docs/hugo.yaml) trên GitHub để nắm các thiết lập và best practice.
 
 <!--more-->
 
@@ -35,7 +35,7 @@ menu:
         type: search
     - name: GitHub
       weight: 5
-      url: "https://github.com/imfing/hextra"
+      url: "https://github.com/your-username/your-project"
       params:
         icon: github
 ```
@@ -233,13 +233,13 @@ editURL: "https://example.com/edit/this/page"
 copyright: "© 2024 YOUR TEXT HERE"
 ```
 
-Có thể tham khảo file mẫu [`i18n/en.yaml`](https://github.com/imfing/hextra/blob/main/i18n/en.yaml) trên repository. Bạn cũng có thể dùng định dạng Markdown trong nội dung copyright.
+Có thể tham khảo file mẫu [`i18n/en.yaml`](https://github.com/your-username/your-project/blob/main/i18n/en.yaml) trên repository. Bạn cũng có thể dùng định dạng Markdown trong nội dung copyright.
 
 ## Khác
 
 ### Favicon
 
-Để tùy chỉnh [favicon](https://en.wikipedia.org/wiki/Favicon) của site, đặt file icon trong thư mục `static` để ghi đè [favicon mặc định của theme](https://github.com/imfing/hextra/tree/main/static):
+Để tùy chỉnh [favicon](https://en.wikipedia.org/wiki/Favicon) của site, đặt file icon trong thư mục `static` để ghi đè [favicon mặc định của theme](https://github.com/your-username/your-project/tree/main/static):
 
 {{< filetree/container >}}
   {{< filetree/folder name="static" >}}
@@ -666,7 +666,7 @@ params:
   banner:
     key: 'announcement-xxx'
     message: |
-      🎉 Welcome! [PROJECT_NAME](https://github.com/hextra/hextra) is a static site generator that helps you build modern websites.
+      🎉 Welcome! [PROJECT_NAME](https://github.com/your-username/your-project) is a static site generator that helps you build modern websites.
 ```
 
 The banner will be displayed on all pages.

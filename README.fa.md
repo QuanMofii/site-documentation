@@ -3,7 +3,7 @@
   <sup align="center"><a href="README.md">English</a> | <a href="README.zh-cn.md">简体中文</a> ｜ <a href="README.fa.md">فارسی</a></sup>
   <p align="center">تم هیوگو مدرن، پاسخگو و دارای امکانات کامل برای ایجاد وب‌سایت‌های استاتیک زیبا.</p>
 
-نسخه‌ی نمایشی → [imfing.github.io/hextra](https://imfing.github.io/hextra/fa)
+نسخه‌ی نمایشی → [{author}.github.io/{project_name}](https://{author}.github.io/{project_name}/fa)
 </div>
 
 <picture>
@@ -12,7 +12,7 @@
 </picture>
 
 <div align="right">
-<a href="https://github.com/imfing/hextra/actions/workflows/pages.yml"><img alt="GitHub Actions Status" src="https://github.com/imfing/hextra/actions/workflows/pages.yml/badge.svg"></a> <a href="https://app.netlify.com/sites/hugo-hextra/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/61d6e55a-2447-487e-b59f-c9537e5df175/deploy-status"></a>
+<a href="https://github.com/{author}/{project_name}/actions/workflows/pages.yml"><img alt="GitHub Actions Status" src="https://github.com/{author}/{project_name}/actions/workflows/pages.yml/badge.svg"></a> <a href="https://app.netlify.com/sites/hugo-hextra/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/61d6e55a-2447-487e-b59f-c9537e5df175/deploy-status"></a>
 </div>
 
 ## ویژگی‌ها
@@ -28,7 +28,7 @@
 
 ### شروع سریع از طریق Template
 
-استفاده از [Hextra Starter Template](https://github.com/imfing/hextra-starter-template) ساده‌ترین روش برای راه‌اندازی سریع یک وب‌سایت جدید با تم هگزترا است. با کلیک بر روی دکمه "Use this template" در بالای صفحه مخزن شروع کنید.
+استفاده از [Hextra Starter Template](https://github.com/{author}/{project_name}-starter-template) ساده‌ترین روش برای راه‌اندازی سریع یک وب‌سایت جدید با تم هگزترا است. با کلیک بر روی دکمه "Use this template" در بالای صفحه مخزن شروع کنید.
 
 مخزن تم همچنین شامل یک [گردش کار گیت‌هاب Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) رای به‌کاراندازی وب‌سایت شما در گیت‌هاب Pages است.
 
@@ -36,7 +36,7 @@
 
 ### استفاده
 
-برای اطلاعات بیشتر به بخش [مستندات](https://imfing.github.io/hextra/fa/docs) مراجعه کنید.
+برای اطلاعات بیشتر به بخش [مستندات](https://{author}.github.io/{project_name}/fa/docs) مراجعه کنید.
 
 ## مشارکت کردن
 

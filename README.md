@@ -3,7 +3,7 @@
   <sup align="center"><a href="README.md">English</a> | <a href="README.zh-cn.md">简体中文</a> ｜ <a href="README.fa.md">فارسی</a></sup>
   <p align="center">Modern, responsive, batteries-included Hugo theme for creating beautiful static websites.</p>
 
-Demo → [imfing.github.io/hextra](https://imfing.github.io/hextra/)
+Demo → [{author}.github.io/{project_name}](https://{author}.github.io/{project_name}/)
 </div>
 
 <picture>
@@ -12,7 +12,7 @@ Demo → [imfing.github.io/hextra](https://imfing.github.io/hextra/)
 </picture>
 
 <div align="right">
-<a href="https://github.com/imfing/hextra/actions/workflows/pages.yml"><img alt="GitHub Actions Status" src="https://github.com/imfing/hextra/actions/workflows/pages.yml/badge.svg"></a> <a href="https://app.netlify.com/sites/hugo-hextra/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/61d6e55a-2447-487e-b59f-c9537e5df175/deploy-status"></a>
+<a href="https://github.com/{author}/{project_name}/actions/workflows/pages.yml"><img alt="GitHub Actions Status" src="https://github.com/{author}/{project_name}/actions/workflows/pages.yml/badge.svg"></a> <a href="https://app.netlify.com/sites/hugo-hextra/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/61d6e55a-2447-487e-b59f-c9537e5df175/deploy-status"></a>
 </div>
 
 ## Features
@@ -28,7 +28,7 @@ Demo → [imfing.github.io/hextra](https://imfing.github.io/hextra/)
 
 ### Use the template
 
-Using the [Hextra Starter Template](https://github.com/imfing/hextra-starter-template) is the simplest method to bootstrap a new website with Hextra theme. Get started by clicking the "Use this template" button on the template repository page.
+Using the [Hextra Starter Template](https://github.com/{author}/{project_name}-starter-template) is the simplest method to bootstrap a new website with Hextra theme. Get started by clicking the "Use this template" button on the template repository page.
 
 The template repository also includes a [GitHub Actions workflow](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site#publishing-with-a-custom-github-actions-workflow) for deploying your website to GitHub Pages.
 
@@ -36,7 +36,7 @@ The template repository also includes a [GitHub Actions workflow](https://docs.g
 
 ### Usage
 
-Refer to the [documentation](https://imfing.github.io/hextra/docs) for more information.
+Refer to the [documentation](https://{author}.github.io/{project_name}/docs) for more information.
 
 ## Contributing
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: سایر شورتکدها
 linkTitle: سایر
 next: /guide/deploy-site
@@ -16,7 +16,7 @@ next: /guide/deploy-site
 {{< badge "default" >}}&nbsp;
 {{< badge content="border" border=false >}}&nbsp;
 {{< badge content="color" color="green" >}}&nbsp;
-{{< badge content="link" link="https://github.com/imfing/hextra/releases" >}}&nbsp;
+{{< badge content="link" link="https://github.com/your-username/your-project/releases" >}}&nbsp;
 {{< badge content="icon" icon="sparkles" >}}&nbsp;
 
 ### الاستخدام
@@ -78,11 +78,11 @@ next: /guide/deploy-site
 #### المتغيرات
 
 {{< badge content="Badge" icon="sparkles" >}}&nbsp;
-{{< badge content="Releases" link="https://github.com/imfing/hextra/releases" icon="github" >}}&nbsp;
+{{< badge content="Releases" link="https://github.com/your-username/your-project/releases" icon="github" >}}&nbsp;
 
 ```
 {{</* badge content="Badge" icon="sparkles" */>}}
-{{</* badge content="Releases" link="https://github.com/imfing/hextra/releases" icon="github" */>}}
+{{</* badge content="Releases" link="https://github.com/your-username/your-project/releases" icon="github" */>}}
 ```
 
 ### خيارات
