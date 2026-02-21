@@ -4,14 +4,14 @@
 
 name = "PROJECT_NAME"
 license = "MIT"
-licenselink = "https://github.com/{author}/{project_name}/blob/main/LICENSE"
+licenselink = "https://QuanMofii.github.io/site-documentation/blob/main/LICENSE"
 description = "Modern, responsive, batteries-included Hugo theme for creating beautiful static websites."
-homepage = "https://github.com/{author}/{project_name}/"
-demosite = "https://{author}.github.io/{project_name}/"
+homepage = "https://QuanMofii.github.io/site-documentation"
+demosite = "https://QuanMofii.github.io/site-documentation"
 tags = ["Modern", "Elegant", "Blog", "Documentation", "Responsive", "Clean", "Light", "Dark", "Minimal"]
 features = ["Responsive", "Dark Mode", "Search", "Syntax Highlighting", "Multilingual", "Social", "Blog", "RSS", "Customization"]
 min_version = "0.146.0"
 
 [author]
-  name = "{author}"
-  homepage = "https://{author}.github.io"
+  name = "QuanMofii"
+  homepage = "https://QuanMofii.github.io"
