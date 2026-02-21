@@ -19,4 +19,5 @@ sidebar:
   {{< card link="shortcodes" title="短代码" icon="template" >}}
   {{< card link="deploy-site" title="部署站点" icon="server" >}}
   {{< card link="site-config" title="站点配置" icon="cog" >}}
+  {{< card link="content-format" title="内容格式标准" icon="document-text" >}}
 {{< /cards >}}

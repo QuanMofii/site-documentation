@@ -19,4 +19,5 @@ Explore the following sections to learn how to use PROJECT_NAME:
   {{< card link="shortcodes" title="Shortcodes" icon="template" >}}
   {{< card link="deploy-site" title="Deploy Site" icon="server" >}}
   {{< card link="site-config" title="Site Config" icon="cog" >}}
+  {{< card link="content-format" title="Content Format Standard" icon="document-text" >}}
 {{< /cards >}}

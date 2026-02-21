@@ -19,4 +19,5 @@ sidebar:
   {{< card link="shortcodes" title="کدهای کوتاه" icon="template" >}}
   {{< card link="deploy-site" title="استقرار سایت" icon="server" >}}
   {{< card link="site-config" title="پیکربندی سایت" icon="cog" >}}
+  {{< card link="content-format" title="استاندارد فرمت محتوا" icon="document-text" >}}
 {{< /cards >}}

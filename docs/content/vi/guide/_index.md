@@ -19,4 +19,5 @@ Khám phá các mục sau để học cách dùng PROJECT_NAME:
   {{< card link="shortcodes" title="Shortcodes" icon="template" >}}
   {{< card link="deploy-site" title="Triển khai site" icon="server" >}}
   {{< card link="site-config" title="Cấu hình Site" icon="cog" >}}
+  {{< card link="content-format" title="Chuẩn định dạng nội dung" icon="document-text" >}}
 {{< /cards >}}

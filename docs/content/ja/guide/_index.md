@@ -19,4 +19,5 @@ PROJECT_NAME の使い方を学ぶには、以下のセクションを参照し�
   {{< card link="shortcodes" title="ショートコード" icon="template" >}}
   {{< card link="deploy-site" title="サイトのデプロイ" icon="server" >}}
   {{< card link="site-config" title="サイト設定" icon="cog" >}}
+  {{< card link="content-format" title="コンテンツフォーマット標準" icon="document-text" >}}
 {{< /cards >}}
