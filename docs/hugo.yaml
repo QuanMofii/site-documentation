@@ -117,8 +117,8 @@ module:
 
   workspace: hugo.work
   # NOTE: When using as Hugo module, update this path to your forked repository
-  # imports:
-  #   - path: github.com/your-org/your-theme-repo
+  imports:
+    - path: github.com/QuanMofii/site-documentation
 
 markup:
   highlight:
