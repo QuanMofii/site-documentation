@@ -1,10 +1,14 @@
 # Configuration
+# =============================================================================
+# PROJECT CONFIGURATION - Single source of truth
+# Change these values to customize for your business/project
+# =============================================================================
 baseURL: "https://example.com/"
-title: "Hextra"
+title: "PROJECT_NAME"
 
 enableRobotsTXT: true
-# Parse Git commit
-enableGitInfo: true
+# Parse Git commit (requires git repository)
+enableGitInfo: false
 # enableEmoji: false
 hasCJKLanguage: true
 
@@ -22,17 +26,19 @@ languages:
   en:
     languageName: English
     weight: 1
-    title: Hextra
+    title: PROJECT_NAME
+    contentDir: content/en
   fa:
     languageName: فارسی
     languageCode: fa
     languageDirection: rtl
     weight: 2
-    title: هگزترا
+    title: PROJECT_NAME
+    contentDir: content/fa
     params:
       banner:
         message: |
-          هگزترا **v0.12** منتشر شد! 🎉 [تازه‌ها را ببینید]({{% relref "blog/v0.12" %}})
+          PROJECT_NAME **v0.11** منتشر شد! 🎉 [تازه‌ها را ببینید]({{% relref "blog/v0.11" %}})
       page:
         contextMenu:
           links:
@@ -43,11 +49,12 @@ languages:
     languageName: 日本語
     languageCode: ja-JP
     weight: 3
-    title: Hextra
+    title: PROJECT_NAME
+    contentDir: content/ja
     params:
       banner:
         message: |
-          Hextra **v0.12** がリリースされました！🎉 [新着情報はこちら]({{% relref "blog/v0.12" %}})
+          PROJECT_NAME **v0.11** がリリースされました！🎉 [新着情報はこちら]({{% relref "blog/v0.11" %}})
       page:
         contextMenu:
           links:
@@ -58,17 +65,34 @@ languages:
     languageName: 简体中文
     languageCode: zh-CN
     weight: 4
-    title: Hextra
+    title: PROJECT_NAME
+    contentDir: content/zh-cn
     params:
       banner:
         message: |
-          Hextra **v0.12** 发布啦！🎉 查看[更新内容]({{% relref "blog/v0.12" %}})
+          PROJECT_NAME **v0.11** 发布啦！🎉 查看[更新内容]({{% relref "blog/v0.11" %}})
       page:
         contextMenu:
           links:
             - name: 在 ChatGPT 中打开
               icon: chatgpt
               url: "https://chatgpt.com/?hints=search&q=%E6%88%91%E6%AD%A3%E5%9C%A8%E9%98%85%E8%AF%BB%E8%BF%99%E4%B8%AA%E6%96%87%E6%A1%A3%3A+{url}%0A%E5%B8%AE%E6%88%91%E7%90%86%E8%A7%A3%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E5%AE%83%E3%80%82"
+  vi:
+    languageName: Tiếng Việt
+    languageCode: vi-VN
+    weight: 5
+    title: PROJECT_NAME
+    contentDir: content/vi
+    params:
+      banner:
+        message: |
+          PROJECT_NAME **v0.11** đã ra mắt! 🎉 [Xem nội dung mới]({{% relref "blog/v0.11" %}})
+      page:
+        contextMenu:
+          links:
+            - name: Mở trong ChatGPT
+              icon: chatgpt
+              url: "https://chatgpt.com/?hints=search&q=T%C3%B4i+%C4%91ang+xem+t%C3%A0i+li%E1%BB%87u+n%C3%A0y%3A+{url}%0AGi%C3%BAp+t%C3%B4i+hi%E1%BB%83u+c%C3%A1ch+s%E1%BB%AD+d%E1%BB%A5ng."
 
 module:
   hugoVersion:
@@ -96,24 +120,54 @@ enableInlineShortcodes: true
 
 menu:
   main:
-    - identifier: documentation
-      name: Documentation
-      pageRef: /docs
+    - identifier: products
+      name: Products
       weight: 1
+    - identifier: ai-internal
+      name: AI Internal
+      pageRef: /docs/ai-internal
+      parent: products
+      weight: 1
+      params:
+        icon: chip
+    - identifier: ai-external
+      name: AI External
+      pageRef: /docs/ai-external
+      parent: products
+      weight: 2
+      params:
+        icon: cloud
+    - identifier: crm
+      name: CRM
+      pageRef: /docs/crm
+      parent: products
+      weight: 3
+      params:
+        icon: users
     - identifier: versions
       name: Versions
-      weight: 5
+      weight: 2
+    - identifier: ver-v2
+      name: v2 (latest)
+      pageRef: /docs/ai-internal/v2
+      parent: versions
+      weight: 1
+    - identifier: ver-v1
+      name: v1
+      pageRef: /docs/ai-internal/v1
+      parent: versions
+      weight: 2
     - identifier: blog
       name: Blog
       pageRef: /blog
-      weight: 2
+      weight: 3
     - identifier: more
       name: More
-      weight: 4
+      weight: 5
     - identifier: showcase
       name: Showcase
       pageRef: /showcase
-      weight: 3
+      weight: 4
       params:
         type: link
         icon: collection
@@ -121,41 +175,38 @@ menu:
       weight: 6
       params:
         type: search
-    - name: GitHub
+    - identifier: github
+      name: GitHub
       weight: 7
+      # NOTE: This URL should match params.project.github
       url: "https://github.com/imfing/hextra"
       params:
         icon: github
-    - identifier: development
-      name: Development ↗
-      url: https://imfing.github.io/hextra/versions/latest/
-      parent: versions
-      params:
-        type: link
-        icon: beaker
-    - identifier: v0.10
-      name: v0.10 ↗
-      url: https://imfing.github.io/hextra/versions/v0.10/
-      parent: versions
-    - identifier: v0.11
-      name: v0.11 ↗
-      url: https://imfing.github.io/hextra/versions/v0.11/
-      parent: versions
+    - identifier: site-config
+      name: Site Config
+      pageRef: /guide/site-config
+      parent: more
+      weight: 0
+    - identifier: guide
+      name: Guide
+      pageRef: /guide
+      parent: more
+      weight: 1
     - identifier: about
       name: About
       pageRef: /about
       parent: more
-      weight: 1
+      weight: 2
     - identifier: archives
       name: Archives
       pageRef: /archives
       parent: more
-      weight: 2
+      weight: 3
     - identifier: glossary
       name: Glossary
       pageRef: /glossary
       parent: more
-      weight: 3
+      weight: 4
 
   sidebar:
     - identifier: more
@@ -173,14 +224,57 @@ menu:
       weight: 3
 
 params:
-  description: Modern, responsive, batteries-included Hugo theme for creating beautiful static websites.
+  # ===========================================================================
+  # PROJECT INFO - Single source of truth for all project metadata
+  # Change these values when adapting this docs for a different business
+  # ===========================================================================
+  project:
+    # Core identity (replace PROJECT_NAME with your project/site name)
+    name: "PROJECT_NAME"                              # Project/product name
+    shortName: "PROJECT_NAME"                         # Short name for compact displays
+    tagline: "Modern Documentation"                  # Brief tagline/slogan
+    
+    # Descriptions (used in meta tags, about pages, etc.)
+    description: "Documentation site built with a modern Hugo theme."
+    shortDescription: "Documentation site built with a modern Hugo theme."
+    
+    # Organization/Author info
+    author: ""
+    organization: "PROJECT_NAME"
+    email: ""                                         # Contact email (optional)
+    
+    # Links
+    website: "https://imfing.github.io/hextra/"       # Main website URL
+    github: "https://github.com/imfing/hextra"        # GitHub repository
+    githubEditBase: "https://github.com/imfing/hextra/edit/main/docs/content"
+    
+    # Social links (optional - leave empty if not used)
+    twitter: ""
+    discord: ""
+    
+    # Branding
+    logo: "images/logo.svg"
+    logoDark: "images/logo-dark.svg"
+    
+    # Version info
+    currentVersion: "v0.11"
+    
+    # License
+    license: "MIT"
+    licenseUrl: "https://github.com/imfing/hextra/blob/main/LICENSE"
+
+  # ===========================================================================
+  # END PROJECT INFO
+  # ===========================================================================
+
+  description: "Modern, responsive, batteries-included Hugo theme for creating beautiful static websites."
 
   externalLinkDecoration: true
 
   banner:
-    key: 'announcement-v0.12'
+    key: 'announcement-v0.11'
     message: |
-      Hextra **v0.12** is here! 🎉 Discover [what's new]({{% relref "blog/v0.12" %}})
+      PROJECT_NAME **v0.11** is here! 🎉 Discover [what's new]({{% relref "blog/v0.11" %}})
 
   navbar:
     displayTitle: true
@@ -226,6 +320,7 @@ params:
 
   editURL:
     enable: true
+    # NOTE: This should match params.project.githubEditBase
     base: "https://github.com/imfing/hextra/edit/main/docs/content"
 
   blog:
@@ -278,15 +373,9 @@ params:
     type: giscus
 
     # https://giscus.app/
+    # NOTE: Update these values for your own repository
     giscus:
       repo: imfing/hextra
       repoId: R_kgDOJ9fJag
       category: General
       categoryId: DIC_kwDOJ9fJas4CY7gW
-      # mapping: pathname
-      # strict: 0
-      # reactionsEnabled: 1
-      # emitMetadata: 0
-      # inputPosition: top
-      # lang: en
-      # theme: noborder_dark

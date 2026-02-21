@@ -1,0 +1,12 @@
+---
+# Bảng thuật ngữ
+#
+# Ví dụ dùng shortcode term.html:
+#
+# {{< term "SEO" >}}
+
+- term: seo
+  abbr: SEO
+  definition: "Tối ưu hóa công cụ tìm kiếm – cải thiện khả năng hiển thị trang web trên công cụ tìm kiếm"
+- term: static site generator
+  definition: "Phần mềm xử lý đầu vào văn bản để tạo ra các trang web tĩnh"

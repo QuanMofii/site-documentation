@@ -1,5 +1,5 @@
 module github.com/imfing/hextra/docs
 
-go 1.26
+go 1.20
 
 replace github.com/imfing/hextra => ../

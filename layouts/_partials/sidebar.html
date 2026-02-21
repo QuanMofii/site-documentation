@@ -4,6 +4,13 @@
 {{- $displayPlaceholder := .displayPlaceholder | default false -}}
 
 {{- $navRoot := cond (eq site.Home.Type "docs") site.Home $context.FirstSection -}}
+{{- /* Scope sidebar to product level when in docs/{product}/... */ -}}
+{{- $docsSection := site.GetPage "/docs" -}}
+{{- range $context.Ancestors.Reverse -}}
+  {{- if eq .Parent $docsSection -}}
+    {{- $navRoot = . -}}
+  {{- end -}}
+{{- end -}}
 {{- $pageURL := $context.RelPermalink -}}
 
 {{- if .context.Params.sidebar.hide -}}
@@ -40,6 +47,12 @@
       {{ .context.Store.Set "enableFooterSwitches" true }}
     {{- else -}}
       <ul class="hx:flex hx:flex-col hx:gap-1 hx:max-md:hidden">
+        {{- /* Product header when scoped to a product */ -}}
+        {{- if and $docsSection (ne $navRoot $context.FirstSection) -}}
+          <li class="[word-break:break-word] hx:mb-2 hx:px-2 hx:py-1.5 hx:text-sm hx:font-semibold hx:text-gray-900 hx:dark:text-gray-100">
+            <span class="hx:cursor-default">{{ $navRoot.LinkTitle }}</span>
+          </li>
+        {{- end -}}
         {{ template "sidebar-main" (dict "context" $navRoot "page" $context  "pageURL" $pageURL) }}
         {{ template "sidebar-footer" }}
       </ul>

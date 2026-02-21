@@ -4,7 +4,7 @@ This file provides guidance to AI coding agents when working with code in this r
 
 ## Project Overview
 
-Hextra is a modern, responsive Hugo theme designed for creating documentation websites, technical blogs, and static sites. Built with Tailwind CSS, it offers features like full-text search, dark mode, multi-language support, and extensive customization options.
+DFC DOCUMENT is a modern, responsive Hugo theme designed for creating documentation websites, technical blogs, and static sites. Built with Tailwind CSS, it offers features like full-text search, dark mode, multi-language support, and extensive customization options.
 
 ## Development Commands
 

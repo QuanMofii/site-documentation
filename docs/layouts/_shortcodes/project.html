@@ -1,0 +1,27 @@
+{{- /*
+  Project Info Shortcode
+  
+  Usage:
+    project "name"           - Returns project name
+    project "shortName"      - Returns short name
+    project "tagline"        - Returns tagline
+    project "description"    - Returns full description
+    project "shortDescription" - Returns short description
+    project "author"         - Returns author name
+    project "organization"   - Returns organization
+    project "website"        - Returns website URL
+    project "github"         - Returns GitHub URL
+    project "currentVersion" - Returns current version
+    project "license"        - Returns license type
+    project "licenseUrl"     - Returns license URL
+    project "email"          - Returns contact email
+    project "twitter"        - Returns Twitter URL
+    project "discord"        - Returns Discord URL
+    project "logo"           - Returns logo path
+    project "logoDark"       - Returns dark logo path
+*/ -}}
+{{- $key := .Get 0 -}}
+{{- $project := .Site.Params.project -}}
+{{- if $project -}}
+  {{- index $project $key -}}
+{{- end -}}

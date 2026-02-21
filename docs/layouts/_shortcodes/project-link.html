@@ -1,0 +1,27 @@
+{{- /*
+  Project Link Shortcode - Creates a link with project info
+  
+  Usage:
+    project-link "github"                    - GitHub link with project name
+    project-link "github" "View on GitHub"   - GitHub link with custom text
+    project-link "website"                   - Website link
+    project-link "license"                   - License link
+*/ -}}
+{{- $type := .Get 0 -}}
+{{- $text := .Get 1 -}}
+{{- $project := .Site.Params.project -}}
+{{- if $project -}}
+  {{- if eq $type "github" -}}
+    {{- $url := $project.github -}}
+    {{- $linkText := $text | default (printf "%s on GitHub" $project.name) -}}
+    <a href="{{ $url }}" target="_blank" rel="noopener">{{ $linkText }}</a>
+  {{- else if eq $type "website" -}}
+    {{- $url := $project.website -}}
+    {{- $linkText := $text | default $project.name -}}
+    <a href="{{ $url }}" target="_blank" rel="noopener">{{ $linkText }}</a>
+  {{- else if eq $type "license" -}}
+    {{- $url := $project.licenseUrl -}}
+    {{- $linkText := $text | default $project.license -}}
+    <a href="{{ $url }}" target="_blank" rel="noopener">{{ $linkText }}</a>
+  {{- end -}}
+{{- end -}}
