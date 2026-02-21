@@ -1,5 +1,5 @@
 ---
-title: "Thiết lập Ban đầu Dự án — Phiên bản 1"
+title: "Thiết lập Ban đầu Dự án V.1.0"
 date: 2025-01-01
 weight: 1
 tags:

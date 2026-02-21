@@ -1,5 +1,5 @@
 ---
-title: "Init Setup Project — Version 1"
+title: "Init Setup Project V.1.0"
 date: 2025-01-01
 weight: 1
 tags:

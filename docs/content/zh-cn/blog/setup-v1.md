@@ -1,5 +1,5 @@
 ---
-title: "项目初始设置 — 版本 1"
+title: "项目初始设置 V.1.0"
 date: 2025-01-01
 weight: 1
 tags:
