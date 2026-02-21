@@ -116,9 +116,8 @@ module:
     min: "0.146.0"
 
   workspace: hugo.work
-  # NOTE: When using as Hugo module, update this path to your forked repository
   imports:
-    - path: github.com/QuanMofii/site-documentation
+     - path: github.com/imfing/hextra 
 
 markup:
   highlight:
