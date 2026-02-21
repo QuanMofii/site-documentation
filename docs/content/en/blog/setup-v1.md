@@ -3,7 +3,8 @@ title: "Init Setup Project V.1.0"
 date: 2026-02-22
 authors:
   - name: QuanMofii
-    link: https://quanmofii.github.io/
+    link: https://quanmofii.github.io
+    image: https://github.com/quanmofii.png
 weight: 1
 tags:
   - Setup
