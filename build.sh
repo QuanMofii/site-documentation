@@ -28,7 +28,7 @@ GIT_HASH=$(git rev-parse --short HEAD)
 echo "Building main site from $MAIN_REF (commit: $GIT_HASH)"
 hugo \
   --minify \
-  --themesDir=../.. --source=$MAIN_DIR \
+  --source=$MAIN_DIR \
   --baseURL "$BASE_URL/" \
   --destination=../public
 
@@ -43,7 +43,7 @@ for VERSION in "${VERSIONS[@]}"; do
   mkdir -p "public/versions/$NAME"
   hugo \
     --minify \
-    --themesDir=../.. --source=$DIR \
+    --source=$DIR \
     --baseURL "$BASE_URL/versions/$NAME/" \
     --destination="../public/versions/$NAME"
 done
